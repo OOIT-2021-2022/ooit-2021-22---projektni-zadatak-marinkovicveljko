@@ -33,6 +33,34 @@ public class Test {
 		// System.out.println(l1.getStartPoint());
 		System.out.println(l1.getStartPoint().getX());
 		System.out.println(l1.length());
+		
+		
+		Rectangle r1= new Rectangle();
+		Circle c1=new Circle();
+		
+		
+		
+		p.setX(p1.getY());
+		l1.setStartPoint(p);
+		
+		l1.setEndPoint(p1);
+		
+		l1.getEndPoint().setY(23);
+		
+		l1.getStartPoint().setX(l1.getEndPoint().getY());
+		
+		l1.getEndPoint().setX((int)(l1.length()-l1.getStartPoint().getX()-l1.getStartPoint().getY()));
+		
+		r1.setUpperLeftPoint(p);
+		
+		r1.getUpperLeftPoint().setX(10);
+		r1.getUpperLeftPoint().setY(15);
+		
+		c1.setCenter(r1.getUpperLeftPoint());
+		
+		c1.getCenter().setX(r1.area()-l1.getStartPoint().getY());
+		
+		
 
 	}
 
