@@ -1,6 +1,8 @@
 package geometry;
 
-public class Point {
+import java.awt.Graphics;
+
+public class Point extends Shape{
 
 	/* public int x;
 	public int y;
@@ -26,7 +28,8 @@ public class Point {
 		 */
 		// mora biti prva naredba
 		this(x, y);
-		this.selected = selected;
+		// this.selected = selected;
+		setSelected(selected);
 	}
 
 	
@@ -59,6 +62,12 @@ public class Point {
 	public boolean contains(Point clickPoint) {
 		return this.distance(clickPoint.x, clickPoint.y) <= 2;
 	}
+	
+	public void draw(Graphics g) {
+		g.drawLine(x - 2, y, x + 2, y);
+		g.drawLine(x, y - 2, x, y + 2);
+	}
+	
 	
 	public void setX(int x)
 	{
