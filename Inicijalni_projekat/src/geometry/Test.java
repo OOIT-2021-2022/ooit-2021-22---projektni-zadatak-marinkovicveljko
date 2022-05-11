@@ -1,5 +1,7 @@
 package geometry;
 
+import java.util.Arrays;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -112,7 +114,58 @@ public class Test {
 				System.out.println(donut instanceof Donut);
 				System.out.println(c2 instanceof Donut);
 
-		
+		     // Vezbe 7
+				System.out.println("Vezbe 7");
+				Point movedPoint = new Point (10,15);
+				System.out.println(movedPoint);
+				movedPoint.moveBy(5, 10);
+				System.out.println(movedPoint);
+				movedPoint.moveTo(5, 10);
+				System.out.println(movedPoint);
+				
+				//Comparable
+				movedPoint.compareTo(clickPoint);
+				
+				Line line1 = new Line(new Point(10,15),new Point(20,25));
+				Line line2 = new Line(new Point(15,20),new Point(25,25));
+				Line line3 = new Line(new Point(10,25),new Point(30,40));
+				Line[] lines = {line1, line2, line3};	
+
+				System.out.println("Niz linija pre sortiranja");
+				for (int j = 0; j < lines.length; j++) {
+					System.out.println(lines[j]);
+				}
+
+				Arrays.sort(lines);
+
+				System.out.println("Niz linija posle sortiranja");
+				for (int j = 0; j < lines.length; j++) {
+					System.out.println(lines[j]);
+				}
+
+
+				Rectangle rectangle1 = new Rectangle(new Point(10,15), 10,15);
+				Rectangle rectangle2 = new Rectangle(new Point(10,15), 30,40);
+				Rectangle rectangle3 = new Rectangle(new Point(10,15), 10,10);
+				Rectangle[] rectangles = {rectangle1, rectangle2, rectangle3};
+
+				System.out.println("Niz pravougaonika pre sortiranja");
+				for (int j = 0; j < rectangles.length; j++) {
+					System.out.println(rectangles[j]);
+				}
+
+				Arrays.sort(rectangles);
+
+				System.out.println("Niz pravougaonika posle sortiranja");
+				for (int j = 0; j < rectangles.length; j++) {
+					System.out.println(rectangles[j]);
+				}
+				
+				//Svi oblici u jednoj listi
+				Shape[] shapes = {rectangle1, rectangle2, line2, line3};
+				for (int j = 0; j < shapes.length; j++) {
+					shapes[j].moveBy(10, 15);
+				}
 		
 
 	}

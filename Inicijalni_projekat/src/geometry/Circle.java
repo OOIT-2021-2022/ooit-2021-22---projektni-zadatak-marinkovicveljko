@@ -6,7 +6,7 @@ public class Circle extends Shape{
 	
 	private Point center;
 	private int radius;
-	private boolean selected;
+	
 	
 	public Circle() {
 
@@ -57,6 +57,26 @@ public class Circle extends Shape{
 	public void draw(Graphics g) {
 		g.drawOval(center.getX()-radius, center.getY()-radius, 2*radius, 2*radius);
 	}
+	
+	@Override
+	public void moveTo(int x, int y) {
+		center.moveTo(x, y);		
+	}
+
+	@Override
+	public void moveBy(int x, int y) {
+		center.moveBy(x, y);		
+	}
+	
+	@Override
+	public int compareTo(Object obj) {
+		if(obj instanceof Circle) {
+			Circle shapeToCompare = (Circle)obj;
+			return (int)(this.area() - shapeToCompare.area());
+		}
+		return 0;
+	}
+	
 	
 	public Point getCenter() {
 		return center;
