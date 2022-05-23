@@ -102,13 +102,6 @@ public class Rectangle extends Shape {
 		this.height = height;
 	}
 
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
 
 	public String toString() {
 		return "Upper left point:" + upperLeftPoint + ", width =" + width + ",height = " + height;

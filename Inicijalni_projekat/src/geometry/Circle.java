@@ -87,8 +87,15 @@ public class Circle extends Shape{
 	public int getRadius() {
 		return radius;
 	}
-	public void setRadius(int radius) {
+	public void setRadius(int radius) throws Exception {
+		if(radius<0)
+		{
+		throw new Exception("Radius ne sme biti manji od 0");
+		}
+		else
+		{
 		this.radius = radius;
+		}
 	}
 	
 	public String toString() {
@@ -96,13 +103,6 @@ public class Circle extends Shape{
 		return "Center=" + center + ", radius=" + radius;
 	}
 	
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
 	
 	
 

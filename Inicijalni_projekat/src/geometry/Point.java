@@ -100,13 +100,7 @@ public class Point extends Shape {
 		this.y = y;
 	}
 
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
+	
 
 	public String toString() {
 

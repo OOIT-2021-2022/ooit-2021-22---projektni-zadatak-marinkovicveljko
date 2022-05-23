@@ -89,14 +89,6 @@ public class Line extends Shape {
 		this.endPoint = endPoint;
 	}
 
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-
 	public String toString() {
 		return startPoint + "-- >" + endPoint;
 	}
