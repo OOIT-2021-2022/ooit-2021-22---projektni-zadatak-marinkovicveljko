@@ -21,7 +21,7 @@ public class Drawing extends JPanel {
 	}
 	
 	public void paint(Graphics g) {
-		Point p = new Point(200,200);
+		/* Point p = new Point(200,200);
 		p.draw(g);
 		g.setColor(Color.red);
 		Point startPoint = new Point(300,400);
@@ -30,6 +30,7 @@ public class Drawing extends JPanel {
 		g.setColor(Color.black);
 		Donut donut = new Donut(new Point(350,450), 50, 25, true);
 		donut.draw(g);
+		*/
 		
 		Point p1 = new Point(20, 30);
 		Line l1 = new Line(new Point(200,300), new Point(400,500));
@@ -52,17 +53,32 @@ public class Drawing extends JPanel {
 			sh.moveBy(10,0);
 			System.out.println(sh);
 		}
-		
-		
-		
-		// Exception
-		try
-		{
-		c1.setRadius(-10);
-		System.out.println("try"); // nece se ispisati.
-		} catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
+		// Collections.sort(shapes);
+
+				// 2.zadatak
+				shapes.get(3).draw(g);
+				shapes.get(shapes.size() - 1).draw(g);
+				shapes.remove(1);
+				// pomera se lista
+				shapes.get(1).draw(g);
+				shapes.get(3).draw(g);
+				shapes.add(3, l1);
+				
+				//Exception
+				try {
+					c1.setRadius(-10);
+					System.out.println("try");
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				
+				it = shapes.iterator();
+				while (it.hasNext()) {
+					Shape sh = it.next();
+					sh.moveBy(10, 0);
+					sh.setSelected(true);
+					sh.draw(g);
+				}
 		
 		
 	}
