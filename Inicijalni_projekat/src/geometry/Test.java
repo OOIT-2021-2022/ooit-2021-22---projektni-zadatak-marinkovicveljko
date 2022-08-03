@@ -58,7 +58,7 @@ public class Test {
 		r1.getUpperLeftPoint().setX(10);
 		r1.getUpperLeftPoint().setY(15);
 		
-		c1.setCenter(r1.getUpperLeftPoint());
+		
 		
 		c1.getCenter().setX(r1.area()-l1.getStartPoint().getY());
 		
@@ -82,7 +82,7 @@ public class Test {
 				lin.setStartPoint(t1);
 				lin.setEndPoint(t2);
 
-				c2.setCenter(t1);
+				
 
 				c2.getCenter().setX(c2.getRadius()
 						+ (int) lin.getStartPoint().distance(lin.getEndPoint().getX(), lin.getEndPoint().getY()));
