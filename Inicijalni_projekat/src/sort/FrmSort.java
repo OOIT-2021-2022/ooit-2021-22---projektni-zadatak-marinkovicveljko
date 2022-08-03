@@ -42,6 +42,7 @@ public class FrmSort extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmSort() {
+		setTitle("Veljko Marinkovic IT15-2021");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -108,16 +109,16 @@ public class FrmSort extends JFrame {
 		gbc_btnAddCircle.gridy = 0;
 		pnlSouth.add(btnAddCircle, gbc_btnAddCircle);
 		
-		JButton btnDeleteCircle = new JButton("Delete Circle");
-		btnDeleteCircle.addActionListener(new ActionListener() {
+		JButton btnSortCircles = new JButton("Sort Circles");
+		btnSortCircles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		GridBagConstraints gbc_btnDeleteCircle = new GridBagConstraints();
-		gbc_btnDeleteCircle.gridwidth = 3;
-		gbc_btnDeleteCircle.gridx = 10;
-		gbc_btnDeleteCircle.gridy = 0;
-		pnlSouth.add(btnDeleteCircle, gbc_btnDeleteCircle);
+		GridBagConstraints gbc_btnSortCircles = new GridBagConstraints();
+		gbc_btnSortCircles.gridwidth = 3;
+		gbc_btnSortCircles.gridx = 10;
+		gbc_btnSortCircles.gridy = 0;
+		pnlSouth.add(btnSortCircles, gbc_btnSortCircles);
 	}
 
 }

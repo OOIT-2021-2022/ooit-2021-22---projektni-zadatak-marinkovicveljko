@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.SwingConstants;
@@ -22,7 +24,7 @@ public class DlgStack extends JDialog {
 	private JTextField txtCircleX;
 	private JTextField txtCircleY;
 	private JTextField txtRadius;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -43,10 +45,10 @@ public class DlgStack extends JDialog {
 		setModal(true);
 		setBounds(100, 100, 450, 300);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{434, 0};
-		gridBagLayout.rowHeights = new int[]{20, 208, 33, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 434, 0 };
+		gridBagLayout.rowHeights = new int[] { 20, 208, 33, 0 };
+		gridBagLayout.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		getContentPane().setLayout(gridBagLayout);
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,10 +68,10 @@ public class DlgStack extends JDialog {
 			gbc_pnlCenter.gridy = 1;
 			getContentPane().add(pnlCenter, gbc_pnlCenter);
 			GridBagLayout gbl_pnlCenter = new GridBagLayout();
-			gbl_pnlCenter.columnWidths = new int[]{0, 0, 0, 0};
-			gbl_pnlCenter.rowHeights = new int[]{0, 0, 0, 0, 0};
-			gbl_pnlCenter.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-			gbl_pnlCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_pnlCenter.columnWidths = new int[] { 0, 0, 0, 0 };
+			gbl_pnlCenter.rowHeights = new int[] { 0, 0, 0, 0, 0 };
+			gbl_pnlCenter.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
+			gbl_pnlCenter.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 			pnlCenter.setLayout(gbl_pnlCenter);
 			{
 				JLabel lblCircleX = new JLabel("  X coordinate");
@@ -141,6 +143,21 @@ public class DlgStack extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+
+						try {
+							if (txtCircleX.getText().isEmpty() || txtCircleY.getText().isEmpty()
+									|| txtRadius.getText().isEmpty()) {
+								JOptionPane.showMessageDialog(null, "You need to fill all of these fields!");
+							} else if (Integer.parseInt(txtRadius.getText()) <= 0) {
+								JOptionPane.showMessageDialog(null, "Radius must be greater than 0!");
+							} else {
+								setVisible(false);
+							}
+
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null, "You have to enter numbers!");
+						}
+
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -160,4 +177,31 @@ public class DlgStack extends JDialog {
 		}
 	}
 
+	public JTextField getTxtCircleX() {
+		return txtCircleX;
+	}
+
+	public void setTxtCircleX(JTextField txtCircleX) {
+		this.txtCircleX = txtCircleX;
+	}
+
+	public JTextField getTxtCircleY() {
+		return txtCircleY;
+	}
+
+	public void setTxtCircleY(JTextField txtCircleY) {
+		this.txtCircleY = txtCircleY;
+	}
+
+	public JTextField getTxtRadius() {
+		return txtRadius;
+	}
+
+	public void setTxtRadius(JTextField txtRadius) {
+		this.txtRadius = txtRadius;
+	}
+	
+
+	
+	
 }

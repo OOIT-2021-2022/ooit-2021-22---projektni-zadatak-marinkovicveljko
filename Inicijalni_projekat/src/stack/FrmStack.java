@@ -6,12 +6,20 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Circle;
+import geometry.Point;
+
 import java.awt.GridBagLayout;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Insets;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
@@ -20,6 +28,8 @@ import java.awt.event.ActionEvent;
 public class FrmStack extends JFrame {
 
 	private JPanel contentPane;
+	DefaultListModel<Circle> dlm = new DefaultListModel<Circle>();
+	
 
 	/**
 	 * Launch the application.
@@ -69,6 +79,7 @@ public class FrmStack extends JFrame {
 		
 		JList lstCircle = new JList();
 		scrollPane.setViewportView(lstCircle);
+		lstCircle.setModel(dlm); // Sve sto se dodaje u model, dodaje se i u listu
 		
 		JPanel pnlNorth = new JPanel();
 		pnlNorth.setBackground(Color.CYAN);
@@ -85,8 +96,21 @@ public class FrmStack extends JFrame {
 		JButton btnAddCirlcle = new JButton("Add Circle");
 		btnAddCirlcle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DlgStack stack1 = new DlgStack();
-				stack1.setVisible(true);
+				DlgStack dialogStack = new DlgStack();
+				dialogStack.setVisible(true);
+				
+				try {
+				 int x = Integer.parseInt(dialogStack.getTxtCircleX().getText());
+				 int y = Integer.parseInt(dialogStack.getTxtCircleY().getText());
+				 int radius = Integer.parseInt(dialogStack.getTxtRadius().getText());
+				 
+				 Circle c = new Circle(new Point(x,y), radius);
+				 dlm.add(0, c);
+				} catch(Exception ex)
+				{
+					JOptionPane.showMessageDialog(null, "Cannot add letters in list!");
+				}
+				
 			}
 		});
 		pnlSouth.add(btnAddCirlcle);
@@ -98,5 +122,7 @@ public class FrmStack extends JFrame {
 		});
 		pnlSouth.add(btnDeleteCircle);
 	}
+	
+	
 
 }
