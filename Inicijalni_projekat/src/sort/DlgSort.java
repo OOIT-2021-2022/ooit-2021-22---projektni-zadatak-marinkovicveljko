@@ -3,12 +3,18 @@ package sort;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
@@ -21,6 +27,7 @@ public class DlgSort extends JDialog {
 	private JTextField txtCircleX;
 	private JTextField txtCircleY;
 	private JTextField txtRadius;
+	
 
 	/**
 	 * Launch the application.
@@ -39,6 +46,7 @@ public class DlgSort extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgSort() {
+		setModal(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -112,6 +120,27 @@ public class DlgSort extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						try {
+							
+							if(txtCircleX.getText().isEmpty() || txtCircleY.getText().isEmpty() || txtRadius.getText().isEmpty())
+							{
+								JOptionPane.showMessageDialog(null, "You need to fill all of the fields");
+							}
+							if (Integer.parseInt(txtRadius.getText())<=0)
+							{
+								JOptionPane.showMessageDialog(null, "Radius must be greater than 0");
+							}
+							else
+							{
+								setVisible(false);
+							}
+							
+						} catch(Exception ex)
+						{
+							JOptionPane.showMessageDialog(null, "You must enter numbers!");
+						}
+						
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -130,5 +159,31 @@ public class DlgSort extends JDialog {
 			}
 		}
 	}
+
+	public JTextField getTxtCircleX() {
+		return txtCircleX;
+	}
+
+	public void setTxtCircleX(JTextField txtCircleX) {
+		this.txtCircleX = txtCircleX;
+	}
+
+	public JTextField getTxtCircleY() {
+		return txtCircleY;
+	}
+
+	public void setTxtCircleY(JTextField txtCircleY) {
+		this.txtCircleY = txtCircleY;
+	}
+
+	public JTextField getTxtRadius() {
+		return txtRadius;
+	}
+
+	public void setTxtRadius(JTextField txtRadius) {
+		this.txtRadius = txtRadius;
+	}
+	
+	
 
 }

@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Circle;
+import geometry.Point;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -13,6 +17,8 @@ import javax.swing.JToggleButton;
 import java.awt.GridBagConstraints;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
@@ -21,6 +27,7 @@ import java.awt.event.ActionEvent;
 public class FrmSort extends JFrame {
 
 	private JPanel contentPane;
+	DefaultListModel<Circle> dlm = new DefaultListModel<Circle>();
 
 	/**
 	 * Launch the application.
@@ -86,6 +93,7 @@ public class FrmSort extends JFrame {
 		
 		JList lstSort = new JList();
 		scrollPane.setViewportView(lstSort);
+		lstSort.setModel(dlm);
 		
 		JPanel pnlSouth = new JPanel();
 		contentPane.add(pnlSouth, BorderLayout.SOUTH);
@@ -101,6 +109,21 @@ public class FrmSort extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DlgSort openSortDialog = new DlgSort();
 				openSortDialog.setVisible(true);
+				try {
+					int x = Integer.parseInt(openSortDialog.getTxtCircleX().getText());
+					int y = Integer.parseInt(openSortDialog.getTxtCircleY().getText());
+					int radius = Integer.parseInt(openSortDialog.getTxtRadius().getText());
+					
+					Circle c = new Circle(new Point(x,y), radius);
+					dlm.add(0, c);
+					
+				} 
+				catch(Exception ex)
+				{
+					JOptionPane.showMessageDialog(null, "You couldn't use letters in fields");		
+				}
+				
+				
 			}
 		});
 		GridBagConstraints gbc_btnAddCircle = new GridBagConstraints();
