@@ -118,6 +118,20 @@ public class FrmStack extends JFrame {
 		JButton btnDeleteCircle = new JButton("Delete Circle");
 		btnDeleteCircle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					if(dlm.isEmpty())
+					{
+						JOptionPane.showMessageDialog(null, "List is empty!");
+					}
+					else
+					{
+						dlm.remove(0);
+					}
+				} catch (Exception e2)
+				{
+					JOptionPane.showMessageDialog(null, "List must contains at least 1 element");
+				}
+				
 			}
 		});
 		pnlSouth.add(btnDeleteCircle);
