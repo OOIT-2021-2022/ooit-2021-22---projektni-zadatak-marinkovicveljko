@@ -129,7 +129,7 @@ public class FrmStack extends JFrame {
 					}
 				} catch (Exception e2)
 				{
-					JOptionPane.showMessageDialog(null, "List must contains at least 1 element");
+					JOptionPane.showMessageDialog(null, "List must contains at least 1 element!");
 				}
 				
 			}
