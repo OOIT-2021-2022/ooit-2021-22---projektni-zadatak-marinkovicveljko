@@ -25,6 +25,7 @@ public class DlgRectangle extends JDialog {
 	private JTextField txtWidth;
 	private JTextField txtHeight;
 	private JTextField txtYCoordinate;
+	private int var=0;
 
 	/**
 	 * Launch the application.
@@ -178,6 +179,7 @@ public class DlgRectangle extends JDialog {
 						} catch(Exception ex)
 						{
 							JOptionPane.showMessageDialog(null, "You must enter numbers in text fields");
+							var=1;
 						}
 						
 						
@@ -194,5 +196,33 @@ public class DlgRectangle extends JDialog {
 			}
 		}
 	}
+	
+	
+
+	public JTextField getTxtWidth() {
+		return txtWidth;
+	}
+
+	public void setTxtWidth(JTextField txtWidth) {
+		this.txtWidth = txtWidth;
+	}
+
+	public JTextField getTxtHeight() {
+		return txtHeight;
+	}
+
+	public void setTxtHeight(JTextField txtHeight) {
+		this.txtHeight = txtHeight;
+	}
+
+	public int getVar() {
+		return var;
+	}
+
+	public void setVar(int var) {
+		this.var = var;
+	}
+	
+	
 
 }
