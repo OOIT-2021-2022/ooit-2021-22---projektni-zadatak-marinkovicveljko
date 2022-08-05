@@ -210,6 +210,7 @@ public class DlgStack extends JDialog {
 	public void setVar(int var) {
 		this.var = var;
 	}
+
 	
 	
 
