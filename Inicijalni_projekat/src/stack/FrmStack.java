@@ -30,6 +30,7 @@ public class FrmStack extends JFrame {
 	private JPanel contentPane;
 	DefaultListModel<Circle> dlm = new DefaultListModel<Circle>();
 	
+	
 
 	/**
 	 * Launch the application.
@@ -100,13 +101,16 @@ public class FrmStack extends JFrame {
 				dialogStack.setVisible(true);
 				
 				try {
+				 if(dialogStack.getVar()==1)
+				 {
 				 int x = Integer.parseInt(dialogStack.getTxtCircleX().getText());
 				 int y = Integer.parseInt(dialogStack.getTxtCircleY().getText());
 				 int radius = Integer.parseInt(dialogStack.getTxtRadius().getText());
 				 
 				 Circle c = new Circle(new Point(x,y), radius);
 				 dlm.add(0, c);
-				} catch(Exception ex)
+				 }
+				 } catch(Exception ex)
 				{
 					JOptionPane.showMessageDialog(null, "Cannot add letters in list!");
 				}

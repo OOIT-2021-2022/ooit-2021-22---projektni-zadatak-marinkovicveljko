@@ -24,6 +24,7 @@ public class DlgStack extends JDialog {
 	private JTextField txtCircleX;
 	private JTextField txtCircleY;
 	private JTextField txtRadius;
+	private int var=0;
 	
 	/**
 	 * Launch the application.
@@ -152,6 +153,7 @@ public class DlgStack extends JDialog {
 								JOptionPane.showMessageDialog(null, "Radius must be greater than 0!");
 							} else {
 								setVisible(false);
+								var=1;
 							}
 
 						} catch (Exception e1) {
@@ -200,6 +202,15 @@ public class DlgStack extends JDialog {
 	public void setTxtRadius(JTextField txtRadius) {
 		this.txtRadius = txtRadius;
 	}
+
+	public int getVar() {
+		return var;
+	}
+
+	public void setVar(int var) {
+		this.var = var;
+	}
+	
 	
 
 	

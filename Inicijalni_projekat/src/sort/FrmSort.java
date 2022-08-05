@@ -113,6 +113,8 @@ public class FrmSort extends JFrame {
 				DlgSort openSortDialog = new DlgSort();
 				openSortDialog.setVisible(true);
 				try {
+					if(openSortDialog.getVar()==1)
+					{
 					int x = Integer.parseInt(openSortDialog.getTxtCircleX().getText());
 					int y = Integer.parseInt(openSortDialog.getTxtCircleY().getText());
 					int radius = Integer.parseInt(openSortDialog.getTxtRadius().getText());
@@ -120,7 +122,7 @@ public class FrmSort extends JFrame {
 					Circle c = new Circle(new Point(x,y), radius);
 					dlm.add(0, c);
 					sortCircles.add(c);
-					
+					}
 				} 
 				catch(Exception ex)
 				{

@@ -27,6 +27,7 @@ public class DlgSort extends JDialog {
 	private JTextField txtCircleX;
 	private JTextField txtCircleY;
 	private JTextField txtRadius;
+	private int var = 0;
 	
 
 	/**
@@ -133,6 +134,7 @@ public class DlgSort extends JDialog {
 							else
 							{
 								setVisible(false);
+								var=1;
 							}
 							
 						} catch(Exception ex)
@@ -183,6 +185,15 @@ public class DlgSort extends JDialog {
 	public void setTxtRadius(JTextField txtRadius) {
 		this.txtRadius = txtRadius;
 	}
+
+	public int getVar() {
+		return var;
+	}
+
+	public void setVar(int var) {
+		this.var = var;
+	}
+	
 	
 	
 
