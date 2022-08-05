@@ -22,12 +22,15 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
 public class FrmSort extends JFrame {
 
 	private JPanel contentPane;
 	DefaultListModel<Circle> dlm = new DefaultListModel<Circle>();
+	ArrayList<Circle> sortCircles = new ArrayList<Circle>();
 
 	/**
 	 * Launch the application.
@@ -116,6 +119,7 @@ public class FrmSort extends JFrame {
 					
 					Circle c = new Circle(new Point(x,y), radius);
 					dlm.add(0, c);
+					sortCircles.add(c);
 					
 				} 
 				catch(Exception ex)
@@ -135,6 +139,23 @@ public class FrmSort extends JFrame {
 		JButton btnSortCircles = new JButton("Sort Circles");
 		btnSortCircles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if(dlm.isEmpty())
+				{
+					JOptionPane.showMessageDialog(null, "List doesn't contain any element");
+				}
+				else
+				{
+					sortCircles.sort(null);
+					dlm.clear();
+					Iterator<Circle> it = sortCircles.iterator();
+					while(it.hasNext())
+					{
+						dlm.addElement(it.next());
+					}
+					
+				}
+				
 			}
 		});
 		GridBagConstraints gbc_btnSortCircles = new GridBagConstraints();
