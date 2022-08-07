@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -25,6 +26,8 @@ public class DlgRectangle extends JDialog {
 	private JTextField txtWidth;
 	private JTextField txtHeight;
 	private JTextField txtYCoordinate;
+	private Color borderColor;
+	private Color innerColor;
 	private int var=0;
 
 	/**
@@ -139,6 +142,12 @@ public class DlgRectangle extends JDialog {
 		}
 		{
 			JButton btnBorderColor = new JButton("Border Color");
+			btnBorderColor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					borderColor = JColorChooser.showDialog(null, "Please choose border color", borderColor);
+					btnBorderColor.setBackground(borderColor);
+				}
+			});
 			GridBagConstraints gbc_btnBorderColor = new GridBagConstraints();
 			gbc_btnBorderColor.insets = new Insets(0, 0, 5, 5);
 			gbc_btnBorderColor.gridx = 1;
@@ -147,6 +156,12 @@ public class DlgRectangle extends JDialog {
 		}
 		{
 			JButton btnInnerColor = new JButton("Inner Color");
+			btnInnerColor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					innerColor = JColorChooser.showDialog(btnInnerColor, "Please choose inner color", innerColor);
+					btnInnerColor.setBackground(innerColor);
+				}
+			});
 			GridBagConstraints gbc_btnInnerColor = new GridBagConstraints();
 			gbc_btnInnerColor.insets = new Insets(0, 0, 0, 5);
 			gbc_btnInnerColor.gridx = 1;

@@ -7,6 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Circle;
+import geometry.Donut;
+import geometry.Line;
+import geometry.Point;
+import geometry.Rectangle;
+import geometry.Shape;
+
 import javax.swing.JToggleButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -15,11 +23,14 @@ import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FrmDrawing extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private Point sparePoint;
 
 	/**
 	 * Launch the application.
@@ -43,6 +54,7 @@ public class FrmDrawing extends JFrame {
 	public FrmDrawing() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		PnlDrawing drawing = new PnlDrawing();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -58,13 +70,7 @@ public class FrmDrawing extends JFrame {
 		pnlNorth.setLayout(gbl_pnlNorth);
 		
 		JToggleButton tglbtnPoint = new JToggleButton("Point");
-		tglbtnPoint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DlgPoint pointDialog = new DlgPoint();
-				pointDialog.setVisible(true);
-				
-			}
-		});
+		
 		buttonGroup.add(tglbtnPoint);
 		GridBagConstraints gbc_tglbtnPoint = new GridBagConstraints();
 		gbc_tglbtnPoint.insets = new Insets(0, 0, 0, 5);
@@ -73,12 +79,7 @@ public class FrmDrawing extends JFrame {
 		pnlNorth.add(tglbtnPoint, gbc_tglbtnPoint);
 		
 		JToggleButton tglbtnLine = new JToggleButton("Line");
-		tglbtnLine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DlgLine dialogLine = new DlgLine();
-				dialogLine.setVisible(true);
-			}
-		});
+		
 		buttonGroup.add(tglbtnLine);
 		GridBagConstraints gbc_tglbtnLine = new GridBagConstraints();
 		gbc_tglbtnLine.insets = new Insets(0, 0, 0, 5);
@@ -87,30 +88,7 @@ public class FrmDrawing extends JFrame {
 		pnlNorth.add(tglbtnLine, gbc_tglbtnLine);
 		
 		JToggleButton tglbtnRectangle = new JToggleButton("Rectangle");
-		tglbtnRectangle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				DlgRectangle dialogRectangle = new DlgRectangle();
-				dialogRectangle.setVisible(true);
-				
-				
-				try {
-				if(dialogRectangle.getVar()==1)
-				{
-				int width = Integer.parseInt(dialogRectangle.getTxtWidth().getText());
-				int height = Integer.parseInt(dialogRectangle.getTxtHeight().getText());
-				}
-
-				} catch(Exception ex)
-				{
-					JOptionPane.showMessageDialog(null, "You cannot add letters");
-				}
-				
-				
-				
-				
-			}
-		});
+		
 		buttonGroup.add(tglbtnRectangle);
 		GridBagConstraints gbc_tglbtnRectangle = new GridBagConstraints();
 		gbc_tglbtnRectangle.insets = new Insets(0, 0, 0, 5);
@@ -119,13 +97,7 @@ public class FrmDrawing extends JFrame {
 		pnlNorth.add(tglbtnRectangle, gbc_tglbtnRectangle);
 		
 		JToggleButton tglbtnCircle = new JToggleButton("Circle");
-		tglbtnCircle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DlgCircle dialogCircle = new DlgCircle();
-				dialogCircle.setVisible(true);
-				
-			}
-		});
+		
 		buttonGroup.add(tglbtnCircle);
 		GridBagConstraints gbc_tglbtnCircle = new GridBagConstraints();
 		gbc_tglbtnCircle.insets = new Insets(0, 0, 0, 5);
@@ -134,12 +106,7 @@ public class FrmDrawing extends JFrame {
 		pnlNorth.add(tglbtnCircle, gbc_tglbtnCircle);
 		
 		JToggleButton tglbtnDonut = new JToggleButton("Donut");
-		tglbtnDonut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DlgDonut dialogDonut = new DlgDonut();
-				dialogDonut.setVisible(true);
-			}
-		});
+		
 		buttonGroup.add(tglbtnDonut);
 		GridBagConstraints gbc_tglbtnDonut = new GridBagConstraints();
 		gbc_tglbtnDonut.gridx = 4;
@@ -147,6 +114,63 @@ public class FrmDrawing extends JFrame {
 		pnlNorth.add(tglbtnDonut, gbc_tglbtnDonut);
 		
 		JPanel pnlDrawing = new JPanel();
+		pnlDrawing.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Shape sh;
+				Point clickPoint = new Point(e.getX(), e.getY());
+				
+				if(tglbtnPoint.isSelected())
+				{
+					sh=new Point(e.getX(),e.getY());
+					drawing.addShape(sh);
+					/* DlgPoint dP= new DlgPoint();
+					dP.setVisible(true); */
+				}
+				
+				if(tglbtnLine.isSelected())
+				{
+					if(sparePoint==null)
+					{
+						sparePoint=clickPoint;
+					}
+					else
+					{
+						sh=new Line(sparePoint, new Point(e.getX(),e.getY()));
+						drawing.addShape(sh);
+					}
+				}
+				
+				if(tglbtnRectangle.isSelected())
+				{
+					DlgRectangle dialogRectangle = new DlgRectangle();
+					int width = Integer.parseInt(dialogRectangle.getTxtWidth().getText());
+					int height = Integer.parseInt(dialogRectangle.getTxtHeight().getText());
+					sh= new Rectangle(new Point(e.getX(),e.getY()), width, height);
+					drawing.addShape(sh);
+				}
+				
+				
+				if(tglbtnCircle.isSelected())
+				{
+					DlgCircle dialogCircle = new DlgCircle();
+					int radius = Integer.parseInt(dialogCircle.getTxtRadius().getText());
+					sh = new Circle(new Point(e.getX(),e.getY()), radius);
+				}
+				
+				if(tglbtnDonut.isSelected())
+				{
+					DlgDonut dialogDonut = new DlgDonut();
+   					int donutRadius = Integer.parseInt(dialogDonut.getTxtRadius().getText());
+					int donutInnerRadius = Integer.parseInt(dialogDonut.getTxtInnerRadius().getText());
+					
+					sh = new Donut(new Point(e.getX(),e.getY()), donutRadius, donutInnerRadius, true);
+					
+				}
+				
+				
+			}
+		});
 		contentPane.add(pnlDrawing, BorderLayout.CENTER);
 		
 		JPanel pnlSouth = new JPanel();

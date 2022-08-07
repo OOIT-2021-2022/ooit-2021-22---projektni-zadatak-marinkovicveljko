@@ -1,9 +1,11 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +24,7 @@ public class DlgLine extends JDialog {
 	private JTextField txtYStart;
 	private JTextField txtXEnd;
 	private JTextField txtYEnd;
+	private Color color;
 
 	/**
 	 * Launch the application.
@@ -146,6 +149,12 @@ public class DlgLine extends JDialog {
 		}
 		{
 			JButton btnBorderColor = new JButton("Border color");
+			btnBorderColor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					color = JColorChooser.showDialog(null, "Please choose color", color);
+					btnBorderColor.setBackground(color);
+				}
+			});
 			GridBagConstraints gbc_btnBorderColor = new GridBagConstraints();
 			gbc_btnBorderColor.insets = new Insets(0, 0, 0, 5);
 			gbc_btnBorderColor.gridx = 1;

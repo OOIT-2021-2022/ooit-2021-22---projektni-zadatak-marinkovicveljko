@@ -1,9 +1,11 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +24,8 @@ public class DlgCircle extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCenter;
 	private JTextField txtRadius;
+	private Color borderColor;
+	private Color innerColor;
 
 	/**
 	 * Launch the application.
@@ -91,6 +95,13 @@ public class DlgCircle extends JDialog {
 		}
 		{
 			JButton btnBorderColor = new JButton("Border Color");
+			btnBorderColor.setSize(10, 10);
+			btnBorderColor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				 borderColor = JColorChooser.showDialog(null, "Please choose border color", borderColor);
+				 btnBorderColor.setBackground(borderColor);
+				}
+			});
 			GridBagConstraints gbc_btnBorderColor = new GridBagConstraints();
 			gbc_btnBorderColor.insets = new Insets(0, 0, 5, 5);
 			gbc_btnBorderColor.gridx = 1;
@@ -99,6 +110,13 @@ public class DlgCircle extends JDialog {
 		}
 		{
 			JButton btnInnerColor = new JButton("InnerColor");
+			btnInnerColor.setSize(10, 10);
+			btnInnerColor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					innerColor=JColorChooser.showDialog(null, "Please choose inner color", innerColor);
+					btnInnerColor.setBackground(innerColor);
+				}
+			});
 			GridBagConstraints gbc_btnInnerColor = new GridBagConstraints();
 			gbc_btnInnerColor.insets = new Insets(0, 0, 0, 5);
 			gbc_btnInnerColor.gridx = 1;
@@ -150,5 +168,14 @@ public class DlgCircle extends JDialog {
 			}
 		}
 	}
+
+	public JTextField getTxtRadius() {
+		return txtRadius;
+	}
+
+	public void setTxtRadius(JTextField txtRadius) {
+		this.txtRadius = txtRadius;
+	}
+	
 
 }
