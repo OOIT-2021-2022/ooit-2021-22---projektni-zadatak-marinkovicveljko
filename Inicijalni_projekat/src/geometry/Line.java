@@ -22,6 +22,10 @@ public class Line extends Shape {
 		this.startPoint = startPoint;
 		this.endPoint = endPoint;
 	}
+	public Line (Point startPoint, Point endPoint, Color color) {
+		this(startPoint, endPoint);
+		setColor(color);
+	}
 
 	public boolean equals(Object obj) {
 		if (obj instanceof Line) {
@@ -48,6 +52,7 @@ public class Line extends Shape {
 	}
 
 	public void draw(Graphics g) {
+		g.setColor(getColor());
 		g.drawLine(this.startPoint.getX(), this.startPoint.getY(), endPoint.getX(), endPoint.getY());
 		
 		if(isSelected()) {

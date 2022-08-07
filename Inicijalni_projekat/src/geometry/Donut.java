@@ -10,6 +10,11 @@ public class Donut extends Circle {
 	public Donut() {
 
 	}
+	
+	public Donut(Point center, int radius, int innerRadius){
+		super(center, radius);
+		this.innerRadius = innerRadius;
+	}
 
 	public Donut(Point center, int radius, int innerRadius, boolean selected) {
 		/*
@@ -22,6 +27,17 @@ public class Donut extends Circle {
 		super(center, radius, selected);
 		this.innerRadius = innerRadius;
 	}
+	
+	public Donut(Point center, int radius, int innerRadius, Color border) {
+		this(center, radius, innerRadius);
+		setColor(border);
+	}
+	
+	public Donut(Point center, int radius, int innerRadius, Color border, Color inner) {
+		this(center, radius, innerRadius, border);
+		setColor(border);
+	}
+	
 
 	public boolean equals(Object obj) {
 		if (obj instanceof Donut) {

@@ -1,6 +1,7 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -25,12 +26,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class FrmDrawing extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private Point sparePoint;
+	private boolean firstClickPoint = true;
+	
 
 	/**
 	 * Launch the application.
@@ -54,7 +58,6 @@ public class FrmDrawing extends JFrame {
 	public FrmDrawing() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		PnlDrawing drawing = new PnlDrawing();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -79,6 +82,11 @@ public class FrmDrawing extends JFrame {
 		pnlNorth.add(tglbtnPoint, gbc_tglbtnPoint);
 		
 		JToggleButton tglbtnLine = new JToggleButton("Line");
+		tglbtnLine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstClickPoint = true;
+			}
+		});
 		
 		buttonGroup.add(tglbtnLine);
 		GridBagConstraints gbc_tglbtnLine = new GridBagConstraints();
@@ -113,7 +121,7 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnDonut.gridy = 0;
 		pnlNorth.add(tglbtnDonut, gbc_tglbtnDonut);
 		
-		JPanel pnlDrawing = new JPanel();
+		PnlDrawing pnlDrawing = new PnlDrawing();
 		pnlDrawing.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -122,22 +130,48 @@ public class FrmDrawing extends JFrame {
 				
 				if(tglbtnPoint.isSelected())
 				{
-					sh=new Point(e.getX(),e.getY());
-					drawing.addShape(sh);
-					/* DlgPoint dP= new DlgPoint();
-					dP.setVisible(true); */
+					DlgPoint dialogPoint = new DlgPoint();
+					dialogPoint.getTxtXCoordinate().setText(Integer.toString(e.getX()));
+					dialogPoint.getTxtXCoordinate().setEditable(false);
+					dialogPoint.getTxtYCoordinate().setText(Integer.toString(e.getY()));
+					dialogPoint.getTxtYCoordinate().setEditable(false);
+					dialogPoint.setVisible(true);
+					
+					if(dialogPoint.isOkay())
+					{
+						// Color colorPoint = new Color();
+					   sh = new Point(e.getX(), e.getY(), dialogPoint.getColor());
+					   pnlDrawing.addShape(sh);
+					}
+					
 				}
 				
 				if(tglbtnLine.isSelected())
 				{
-					if(sparePoint==null)
+					if(firstClickPoint)
 					{
 						sparePoint=clickPoint;
+						firstClickPoint=false;		
 					}
 					else
 					{
-						sh=new Line(sparePoint, new Point(e.getX(),e.getY()));
-						drawing.addShape(sh);
+						DlgLine dialogLine = new DlgLine();
+						dialogLine.getTxtXStart().setText(Integer.toString(sparePoint.getX()));
+						dialogLine.getTxtXStart().setEditable(false);
+						dialogLine.getTxtYStart().setText(Integer.toString(sparePoint.getY()));
+						dialogLine.getTxtYStart().setEditable(false);
+						dialogLine.getTxtXEnd().setText(Integer.toString(clickPoint.getX()));
+						dialogLine.getTxtXEnd().setEditable(false);
+						dialogLine.getTxtYEnd().setText(Integer.toString(clickPoint.getY()));
+						dialogLine.getTxtYEnd().setEditable(false);
+						dialogLine.setVisible(true);
+						if(dialogLine.isOkay())
+						{
+						//Color colorLine = dialogLine.getColor();
+						sh = new Line(new Point(sparePoint.getX(), sparePoint.getY()), new Point(clickPoint.getX(), clickPoint.getY()), dialogLine.getColor());
+						pnlDrawing.addShape(sh);
+						}
+						firstClickPoint = true;
 					}
 				}
 				
@@ -147,7 +181,7 @@ public class FrmDrawing extends JFrame {
 					int width = Integer.parseInt(dialogRectangle.getTxtWidth().getText());
 					int height = Integer.parseInt(dialogRectangle.getTxtHeight().getText());
 					sh= new Rectangle(new Point(e.getX(),e.getY()), width, height);
-					drawing.addShape(sh);
+					//drawing.addShape(sh);
 				}
 				
 				

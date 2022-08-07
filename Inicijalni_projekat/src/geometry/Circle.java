@@ -3,7 +3,7 @@ package geometry;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Circle extends Shape{
+public class Circle extends ShapeInner{
 	
 	private Point center;
 	private int radius;
@@ -22,6 +22,11 @@ public class Circle extends Shape{
 		this(center, radius);
 		//this.selected = selected;
 		setSelected(selected);
+	}
+	
+	public Circle(Point center, int radius, Color color) {
+		this(center, radius);
+		setColor(color);
 	}
 
 	public boolean equals(Object obj) {

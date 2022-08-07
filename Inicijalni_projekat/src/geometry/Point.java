@@ -31,6 +31,12 @@ public class Point extends Shape {
 		// this.selected = selected;
 		setSelected(selected);
 	}
+	
+	public Point(int x, int y, Color color) {
+		this(x, y);
+		setColor(color);
+	}
+	
 
 	public boolean equals(Object obj) {
 
@@ -60,6 +66,7 @@ public class Point extends Shape {
 	}
 
 	public void draw(Graphics g) {
+		g.setColor(getColor());
 		g.drawLine(x - 2, y, x + 2, y);
 		g.drawLine(x, y - 2, x, y + 2);
 		

@@ -24,6 +24,7 @@ public class DlgLine extends JDialog {
 	private JTextField txtYStart;
 	private JTextField txtXEnd;
 	private JTextField txtYEnd;
+	public boolean okay;
 	private Color color;
 
 	/**
@@ -170,6 +171,7 @@ public class DlgLine extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
+						okay = true;
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -180,6 +182,7 @@ public class DlgLine extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						okay=false;
 						setVisible(false);
 					}
 				});
@@ -188,5 +191,56 @@ public class DlgLine extends JDialog {
 			}
 		}
 	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public JTextField getTxtXStart() {
+		return txtXStart;
+	}
+
+	public void setTxtXStart(JTextField txtXStart) {
+		this.txtXStart = txtXStart;
+	}
+
+	public JTextField getTxtYStart() {
+		return txtYStart;
+	}
+
+	public void setTxtYStart(JTextField txtYStart) {
+		this.txtYStart = txtYStart;
+	}
+
+	public JTextField getTxtXEnd() {
+		return txtXEnd;
+	}
+
+	public void setTxtXEnd(JTextField txtXEnd) {
+		this.txtXEnd = txtXEnd;
+	}
+
+	public JTextField getTxtYEnd() {
+		return txtYEnd;
+	}
+
+	public void setTxtYEnd(JTextField txtYEnd) {
+		this.txtYEnd = txtYEnd;
+	}
+
+	public boolean isOkay() {
+		return okay;
+	}
+
+	public void setOkay(boolean okay) {
+		this.okay = okay;
+	}
+	
+	
+	
 
 }

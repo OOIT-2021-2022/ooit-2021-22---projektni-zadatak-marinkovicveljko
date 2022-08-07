@@ -43,9 +43,9 @@ public class Drawing extends JPanel {
 		ArrayList<Shape> shapes = new ArrayList<Shape>();
 		shapes.add(p1);
 		shapes.add(l1);
-		shapes.add(c1);
+		/* shapes.add(c1);
 		shapes.add(d1);
-		shapes.add(r1);
+		shapes.add(r1); */
 		Iterator<Shape> it = shapes.iterator();
 		while(it.hasNext())
 		{

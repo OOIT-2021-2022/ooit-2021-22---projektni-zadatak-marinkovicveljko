@@ -9,6 +9,9 @@ import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import geometry.Point;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -22,7 +25,10 @@ public class DlgPoint extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtXCoordinate;
 	private JTextField txtYCoordinate;
+	private JButton btnBorderColor;
+	private Point p;
 	private Color color;
+	private boolean okay;
 
 	/**
 	 * Launch the application.
@@ -111,7 +117,9 @@ public class DlgPoint extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						okay=true;
 						setVisible(false);
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -123,6 +131,7 @@ public class DlgPoint extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
+						
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -130,5 +139,52 @@ public class DlgPoint extends JDialog {
 			}
 		}
 	}
+
+	
+	
+	
+
+	public boolean isOkay() {
+		return okay;
+	}
+
+	public void setOkay(boolean okay) {
+		this.okay = okay;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public JTextField getTxtXCoordinate() {
+		return txtXCoordinate;
+	}
+
+	public void setTxtXCoordinate(JTextField txtXCoordinate) {
+		this.txtXCoordinate = txtXCoordinate;
+	}
+
+	public JTextField getTxtYCoordinate() {
+		return txtYCoordinate;
+	}
+
+	public void setTxtYCoordinate(JTextField txtYCoordinate) {
+		this.txtYCoordinate = txtYCoordinate;
+	}
+	public JButton getBtnBorderColor()
+	{
+		return btnBorderColor;
+	}
+	public void setBtnBorderColor(JButton btnBorderColor)
+	{
+		this.btnBorderColor = btnBorderColor;
+	}
+	
+	
+	
 
 }
