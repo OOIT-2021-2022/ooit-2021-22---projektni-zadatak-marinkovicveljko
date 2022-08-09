@@ -26,6 +26,7 @@ public class DlgDonut extends JDialog {
 	private JTextField txtYCentre;
 	private JTextField txtInnerRadius;
 	private JTextField txtRadius;
+	private boolean okay;
 	private Color borderColor;
 	private Color innerColor;
 
@@ -203,7 +204,10 @@ public class DlgDonut extends JDialog {
 							JOptionPane.showMessageDialog(null, "Inner radius shouldn't be greater than radius");
 						}
 						else
+						{
+							okay = true;
 							setVisible(false);
+						}
 						} catch(Exception ex)
 						{
 							JOptionPane.showMessageDialog(null, "You should fill these fields with numbers");
@@ -219,6 +223,7 @@ public class DlgDonut extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						okay = false;
 						setVisible(false);
 					}
 				});
@@ -243,6 +248,48 @@ public class DlgDonut extends JDialog {
 	public void setTxtRadius(JTextField txtRadius) {
 		this.txtRadius = txtRadius;
 	}
+
+	public JTextField getTxtCenterX() {
+		return txtCenterX;
+	}
+
+	public void setTxtCenterX(JTextField txtCenterX) {
+		this.txtCenterX = txtCenterX;
+	}
+
+	public JTextField getTxtYCentre() {
+		return txtYCentre;
+	}
+
+	public void setTxtYCentre(JTextField txtYCentre) {
+		this.txtYCentre = txtYCentre;
+	}
+
+	public Color getBorderColor() {
+		return borderColor;
+	}
+
+	public void setBorderColor(Color borderColor) {
+		this.borderColor = borderColor;
+	}
+
+	public Color getInnerColor() {
+		return innerColor;
+	}
+
+	public void setInnerColor(Color innerColor) {
+		this.innerColor = innerColor;
+	}
+
+	public boolean isOkay() {
+		return okay;
+	}
+
+	public void setOkay(boolean okay) {
+		this.okay = okay;
+	}
+	
+	
 	
 
 }

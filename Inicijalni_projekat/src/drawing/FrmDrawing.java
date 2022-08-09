@@ -178,28 +178,52 @@ public class FrmDrawing extends JFrame {
 				if(tglbtnRectangle.isSelected())
 				{
 					DlgRectangle dialogRectangle = new DlgRectangle();
+					dialogRectangle.getTxtXCoordinate().setText(Integer.toString(clickPoint.getX()));
+					dialogRectangle.getTxtXCoordinate().setEditable(false);
+					dialogRectangle.getTxtYCoordinate().setText(Integer.toString(clickPoint.getY()));
+					dialogRectangle.getTxtYCoordinate().setEditable(false);
+					dialogRectangle.setVisible(true);
 					int width = Integer.parseInt(dialogRectangle.getTxtWidth().getText());
 					int height = Integer.parseInt(dialogRectangle.getTxtHeight().getText());
-					sh= new Rectangle(new Point(e.getX(),e.getY()), width, height);
-					//drawing.addShape(sh);
+					if(dialogRectangle.isOkay())
+					{
+					sh= new Rectangle(new Point(clickPoint.getX(),clickPoint.getY()), width, height ,dialogRectangle.getBorderColor(), dialogRectangle.getInnerColor());
+					pnlDrawing.addShape(sh);
+					}
 				}
 				
 				
 				if(tglbtnCircle.isSelected())
 				{
 					DlgCircle dialogCircle = new DlgCircle();
+					dialogCircle.getTxtCenterX().setText(Integer.toString(clickPoint.getX()));
+					dialogCircle.getTxtCenterX().setEditable(false);
+					dialogCircle.getTxtCenterY().setText(Integer.toString(clickPoint.getY()));
+					dialogCircle.getTxtCenterY().setEditable(false);
+					dialogCircle.setVisible(true);
 					int radius = Integer.parseInt(dialogCircle.getTxtRadius().getText());
-					sh = new Circle(new Point(e.getX(),e.getY()), radius);
+					if(dialogCircle.isOkay())
+					{
+					sh = new Circle(new Point(e.getX(),e.getY()), radius, dialogCircle.getBorderColor(), dialogCircle.getInnerColor());
+					pnlDrawing.addShape(sh);
+					}
 				}
 				
 				if(tglbtnDonut.isSelected())
 				{
 					DlgDonut dialogDonut = new DlgDonut();
+					dialogDonut.getTxtCenterX().setText(Integer.toString(clickPoint.getX()));
+					dialogDonut.getTxtCenterX().setEditable(false);
+					dialogDonut.getTxtYCentre().setText(Integer.toString(clickPoint.getY()));
+					dialogDonut.getTxtYCentre().setEditable(false);
+					dialogDonut.setVisible(true);
    					int donutRadius = Integer.parseInt(dialogDonut.getTxtRadius().getText());
 					int donutInnerRadius = Integer.parseInt(dialogDonut.getTxtInnerRadius().getText());
-					
-					sh = new Donut(new Point(e.getX(),e.getY()), donutRadius, donutInnerRadius, true);
-					
+					if(dialogDonut.isOkay())
+					{
+					sh = new Donut(new Point(clickPoint.getX(),clickPoint.getY()), donutRadius, donutInnerRadius, dialogDonut.getBorderColor(), dialogDonut.getInnerColor());
+					pnlDrawing.addShape(sh);
+					}
 				}
 				
 				

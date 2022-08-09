@@ -28,6 +28,7 @@ public class DlgRectangle extends JDialog {
 	private JTextField txtYCoordinate;
 	private Color borderColor;
 	private Color innerColor;
+	private boolean okay;
 	private int var=0;
 
 	/**
@@ -87,7 +88,7 @@ public class DlgRectangle extends JDialog {
 			txtXCoordinate.setColumns(10);
 		}
 		{
-			JLabel lblYCoordinate = new JLabel("YCoordinate");
+			JLabel lblYCoordinate = new JLabel("Y Coordinate");
 			GridBagConstraints gbc_lblYCoordinate = new GridBagConstraints();
 			gbc_lblYCoordinate.insets = new Insets(0, 0, 5, 5);
 			gbc_lblYCoordinate.gridx = 1;
@@ -189,6 +190,7 @@ public class DlgRectangle extends JDialog {
 							}
 							else
 							{
+								okay = true;
 								setVisible(false);
 							}
 						} catch(Exception ex)
@@ -206,6 +208,13 @@ public class DlgRectangle extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						okay = false;
+						setVisible(false);
+						
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -237,6 +246,49 @@ public class DlgRectangle extends JDialog {
 	public void setVar(int var) {
 		this.var = var;
 	}
+
+	public JTextField getTxtXCoordinate() {
+		return txtXCoordinate;
+	}
+
+	public void setTxtXCoordinate(JTextField txtXCoordinate) {
+		this.txtXCoordinate = txtXCoordinate;
+	}
+
+	public JTextField getTxtYCoordinate() {
+		return txtYCoordinate;
+	}
+
+	public void setTxtYCoordinate(JTextField txtYCoordinate) {
+		this.txtYCoordinate = txtYCoordinate;
+	}
+
+	public Color getBorderColor() {
+		return borderColor;
+	}
+
+	public void setBorderColor(Color borderColor) {
+		this.borderColor = borderColor;
+	}
+
+	public Color getInnerColor() {
+		return innerColor;
+	}
+
+	public void setInnerColor(Color innerColor) {
+		this.innerColor = innerColor;
+	}
+
+	public boolean isOkay() {
+		return okay;
+	}
+
+	public void setOkay(boolean okay) {
+		this.okay = okay;
+	}
+	
+	
+	
 	
 	
 

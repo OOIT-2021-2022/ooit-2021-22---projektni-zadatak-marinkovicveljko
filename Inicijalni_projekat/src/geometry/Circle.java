@@ -28,6 +28,10 @@ public class Circle extends ShapeInner{
 		this(center, radius);
 		setColor(color);
 	}
+	public Circle(Point center, int radius, Color color, Color innerColor) {
+		this(center, radius, color);
+		setInnerColor(innerColor);
+	}
 
 	public boolean equals(Object obj) {
 		if (obj instanceof Circle) {
@@ -61,7 +65,9 @@ public class Circle extends ShapeInner{
 	}
 	
 	public void draw(Graphics g) {
+		g.setColor(getColor());
 		g.drawOval(center.getX()-radius, center.getY()-radius, 2*radius, 2*radius);
+		fill(g);
 		
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
@@ -122,6 +128,13 @@ public class Circle extends ShapeInner{
 	public String toString() {
 		// Center=(x,y), radius= radius
 		return "Center=" + center + ", radius=" + radius;
+	}
+
+	@Override
+	public void fill(Graphics g) {
+		g.setColor(getInnerColor());
+		g.fillOval(this.getCenter().getX()-radius, this.getCenter().getY()-radius , 2*radius, 2*radius);
+		
 	}
 	
 	

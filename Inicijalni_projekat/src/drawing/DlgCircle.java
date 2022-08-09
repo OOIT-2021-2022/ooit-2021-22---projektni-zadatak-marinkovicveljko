@@ -22,10 +22,12 @@ import java.awt.event.ActionEvent;
 public class DlgCircle extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtCenter;
+	private JTextField txtCenterX;
 	private JTextField txtRadius;
 	private Color borderColor;
 	private Color innerColor;
+	private JTextField txtCenterY;
+	private boolean okay;
 
 	/**
 	 * Launch the application.
@@ -51,10 +53,10 @@ public class DlgCircle extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblCenterCoordinate = new JLabel("Center Coordinate");
@@ -62,36 +64,8 @@ public class DlgCircle extends JDialog {
 			gbc_lblCenterCoordinate.anchor = GridBagConstraints.EAST;
 			gbc_lblCenterCoordinate.insets = new Insets(0, 0, 5, 5);
 			gbc_lblCenterCoordinate.gridx = 1;
-			gbc_lblCenterCoordinate.gridy = 1;
+			gbc_lblCenterCoordinate.gridy = 0;
 			contentPanel.add(lblCenterCoordinate, gbc_lblCenterCoordinate);
-		}
-		{
-			txtCenter = new JTextField();
-			GridBagConstraints gbc_txtCenter = new GridBagConstraints();
-			gbc_txtCenter.insets = new Insets(0, 0, 5, 0);
-			gbc_txtCenter.fill = GridBagConstraints.HORIZONTAL;
-			gbc_txtCenter.gridx = 2;
-			gbc_txtCenter.gridy = 1;
-			contentPanel.add(txtCenter, gbc_txtCenter);
-			txtCenter.setColumns(10);
-		}
-		{
-			JLabel lblRadius = new JLabel("Radius");
-			GridBagConstraints gbc_lblRadius = new GridBagConstraints();
-			gbc_lblRadius.insets = new Insets(0, 0, 5, 5);
-			gbc_lblRadius.gridx = 1;
-			gbc_lblRadius.gridy = 3;
-			contentPanel.add(lblRadius, gbc_lblRadius);
-		}
-		{
-			txtRadius = new JTextField();
-			GridBagConstraints gbc_txtRadius = new GridBagConstraints();
-			gbc_txtRadius.insets = new Insets(0, 0, 5, 0);
-			gbc_txtRadius.fill = GridBagConstraints.HORIZONTAL;
-			gbc_txtRadius.gridx = 2;
-			gbc_txtRadius.gridy = 3;
-			contentPanel.add(txtRadius, gbc_txtRadius);
-			txtRadius.setColumns(10);
 		}
 		{
 			JButton btnBorderColor = new JButton("Border Color");
@@ -102,10 +76,66 @@ public class DlgCircle extends JDialog {
 				 btnBorderColor.setBackground(borderColor);
 				}
 			});
+			{
+				JLabel lblCenterX = new JLabel("X coordinate");
+				GridBagConstraints gbc_lblCenterX = new GridBagConstraints();
+				gbc_lblCenterX.insets = new Insets(0, 0, 5, 5);
+				gbc_lblCenterX.anchor = GridBagConstraints.EAST;
+				gbc_lblCenterX.gridx = 2;
+				gbc_lblCenterX.gridy = 1;
+				contentPanel.add(lblCenterX, gbc_lblCenterX);
+			}
+			{
+				txtCenterX = new JTextField();
+				GridBagConstraints gbc_txtCenterX = new GridBagConstraints();
+				gbc_txtCenterX.insets = new Insets(0, 0, 5, 0);
+				gbc_txtCenterX.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtCenterX.gridx = 3;
+				gbc_txtCenterX.gridy = 1;
+				contentPanel.add(txtCenterX, gbc_txtCenterX);
+				txtCenterX.setColumns(10);
+			}
+			{
+				JLabel lblCenterY = new JLabel("Y coordinate");
+				GridBagConstraints gbc_lblCenterY = new GridBagConstraints();
+				gbc_lblCenterY.anchor = GridBagConstraints.EAST;
+				gbc_lblCenterY.insets = new Insets(0, 0, 5, 5);
+				gbc_lblCenterY.gridx = 2;
+				gbc_lblCenterY.gridy = 2;
+				contentPanel.add(lblCenterY, gbc_lblCenterY);
+			}
+			{
+				txtCenterY = new JTextField();
+				GridBagConstraints gbc_txtCenterY = new GridBagConstraints();
+				gbc_txtCenterY.insets = new Insets(0, 0, 5, 0);
+				gbc_txtCenterY.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtCenterY.gridx = 3;
+				gbc_txtCenterY.gridy = 2;
+				contentPanel.add(txtCenterY, gbc_txtCenterY);
+				txtCenterY.setColumns(10);
+			}
+			{
+				JLabel lblRadius = new JLabel("Radius");
+				GridBagConstraints gbc_lblRadius = new GridBagConstraints();
+				gbc_lblRadius.insets = new Insets(0, 0, 5, 5);
+				gbc_lblRadius.gridx = 2;
+				gbc_lblRadius.gridy = 4;
+				contentPanel.add(lblRadius, gbc_lblRadius);
+			}
+			{
+				txtRadius = new JTextField();
+				GridBagConstraints gbc_txtRadius = new GridBagConstraints();
+				gbc_txtRadius.insets = new Insets(0, 0, 5, 0);
+				gbc_txtRadius.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtRadius.gridx = 3;
+				gbc_txtRadius.gridy = 4;
+				contentPanel.add(txtRadius, gbc_txtRadius);
+				txtRadius.setColumns(10);
+			}
 			GridBagConstraints gbc_btnBorderColor = new GridBagConstraints();
 			gbc_btnBorderColor.insets = new Insets(0, 0, 5, 5);
 			gbc_btnBorderColor.gridx = 1;
-			gbc_btnBorderColor.gridy = 5;
+			gbc_btnBorderColor.gridy = 6;
 			contentPanel.add(btnBorderColor, gbc_btnBorderColor);
 		}
 		{
@@ -120,7 +150,7 @@ public class DlgCircle extends JDialog {
 			GridBagConstraints gbc_btnInnerColor = new GridBagConstraints();
 			gbc_btnInnerColor.insets = new Insets(0, 0, 0, 5);
 			gbc_btnInnerColor.gridx = 1;
-			gbc_btnInnerColor.gridy = 6;
+			gbc_btnInnerColor.gridy = 7;
 			contentPanel.add(btnInnerColor, gbc_btnInnerColor);
 		}
 		{
@@ -142,6 +172,7 @@ public class DlgCircle extends JDialog {
 						}
 						else
 						{
+							okay = true;
 							setVisible(false);
 						}
 						
@@ -160,6 +191,7 @@ public class DlgCircle extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						okay = false;
 						setVisible(false);
 					}
 				});
@@ -176,6 +208,49 @@ public class DlgCircle extends JDialog {
 	public void setTxtRadius(JTextField txtRadius) {
 		this.txtRadius = txtRadius;
 	}
+
+	public JTextField getTxtCenterX() {
+		return txtCenterX;
+	}
+
+	public void setTxtCenterX(JTextField txtCenterX) {
+		this.txtCenterX = txtCenterX;
+	}
+
+	public Color getBorderColor() {
+		return borderColor;
+	}
+
+	public void setBorderColor(Color borderColor) {
+		this.borderColor = borderColor;
+	}
+
+	public Color getInnerColor() {
+		return innerColor;
+	}
+
+	public void setInnerColor(Color innerColor) {
+		this.innerColor = innerColor;
+	}
+
+	public JTextField getTxtCenterY() {
+		return txtCenterY;
+	}
+
+	public void setTxtCenterY(JTextField txtCenterY) {
+		this.txtCenterY = txtCenterY;
+	}
+
+	public boolean isOkay() {
+		return okay;
+	}
+
+	public void setOkay(boolean okay) {
+		this.okay = okay;
+	}
+	
+	
+	
 	
 
 }

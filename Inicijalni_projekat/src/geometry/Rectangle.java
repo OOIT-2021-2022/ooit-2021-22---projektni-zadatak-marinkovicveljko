@@ -30,6 +30,11 @@ public class Rectangle extends ShapeInner {
 		this(upperLeftPoint, width, height);
 		setColor(color);
 	}
+	
+	public Rectangle(Point upperLeftPoint, int width, int height, Color color, Color innerColor) {
+		this(upperLeftPoint, width, height, color);
+		setInnerColor(innerColor);
+	}
 
 	public boolean equals(Object obj) {
 		if (obj instanceof Rectangle) {
@@ -60,9 +65,11 @@ public class Rectangle extends ShapeInner {
 	public int circumference() {
 		return 2 * (width + height);
 	}
-
+	
 	public void draw(Graphics g) {
+		g.setColor(getColor());
 		g.drawRect(upperLeftPoint.getX(), upperLeftPoint.getY(), width, height);
+		fill(g);
 		
 		if(isSelected()) {
 			g.setColor(Color.blue);
@@ -73,6 +80,14 @@ public class Rectangle extends ShapeInner {
 			g.setColor(Color.black);
 		}
 	}
+	
+	@Override
+	public void fill(Graphics g) {
+		g.setColor(getInnerColor());
+		g.fillRect(this.getUpperLeftPoint().getX()+1, this.getUpperLeftPoint().getY()+1, this.getWidth()-1, this.getHeight()-1);
+		
+	}
+	
 
 	@Override
 	public void moveTo(int x, int y) {
@@ -121,5 +136,6 @@ public class Rectangle extends ShapeInner {
 	public String toString() {
 		return "Upper left point:" + upperLeftPoint + ", width =" + width + ",height = " + height;
 	}
+
 
 }

@@ -35,7 +35,7 @@ public class Donut extends Circle {
 	
 	public Donut(Point center, int radius, int innerRadius, Color border, Color inner) {
 		this(center, radius, innerRadius, border);
-		setColor(border);
+		setInnerColor(inner);
 	}
 	
 
@@ -62,9 +62,11 @@ public class Donut extends Circle {
 	}
 
 	public void draw(Graphics g) {
+		g.setColor(getColor());
 		super.draw(g);
 		g.drawOval(getCenter().getX() - innerRadius, getCenter().getY() - innerRadius, 2 * innerRadius,
 				2 * innerRadius);
+		
 		
 		
 		if (isSelected()) {
@@ -76,6 +78,13 @@ public class Donut extends Circle {
 			g.drawRect(getCenter().getX() - 2, getCenter().getY() + innerRadius - 2, 4, 4);
 			g.setColor(Color.black);
 		}
+	}
+	
+	public void fill(Graphics g) {
+		g.setColor(getInnerColor());
+		super.fill(g);
+		g.setColor(Color.WHITE);
+		g.fillOval(getCenter().getX()-innerRadius, getCenter().getY() - innerRadius , 2*innerRadius, 2*innerRadius);
 	}
 
 	@Override
