@@ -47,33 +47,35 @@ public class DlgPoint extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgPoint() {
+		setResizable(false);
 		setTitle("Point");
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 270, 200);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(250, 235, 215));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblXCoordinate = new JLabel("X coordinate");
 			GridBagConstraints gbc_lblXCoordinate = new GridBagConstraints();
 			gbc_lblXCoordinate.insets = new Insets(0, 0, 5, 5);
 			gbc_lblXCoordinate.gridx = 1;
-			gbc_lblXCoordinate.gridy = 1;
+			gbc_lblXCoordinate.gridy = 0;
 			contentPanel.add(lblXCoordinate, gbc_lblXCoordinate);
 		}
 		{
 			txtXCoordinate = new JTextField();
 			GridBagConstraints gbc_txtXCoordinate = new GridBagConstraints();
-			gbc_txtXCoordinate.insets = new Insets(0, 0, 5, 0);
+			gbc_txtXCoordinate.insets = new Insets(0, 0, 5, 5);
 			gbc_txtXCoordinate.fill = GridBagConstraints.HORIZONTAL;
 			gbc_txtXCoordinate.gridx = 2;
-			gbc_txtXCoordinate.gridy = 1;
+			gbc_txtXCoordinate.gridy = 0;
 			contentPanel.add(txtXCoordinate, gbc_txtXCoordinate);
 			txtXCoordinate.setColumns(10);
 		}
@@ -86,31 +88,32 @@ public class DlgPoint extends JDialog {
 			contentPanel.add(lblYCoordinate, gbc_lblYCoordinate);
 		}
 		{
-			txtYCoordinate = new JTextField();
-			GridBagConstraints gbc_txtYCoordinate = new GridBagConstraints();
-			gbc_txtYCoordinate.insets = new Insets(0, 0, 5, 0);
-			gbc_txtYCoordinate.fill = GridBagConstraints.HORIZONTAL;
-			gbc_txtYCoordinate.gridx = 2;
-			gbc_txtYCoordinate.gridy = 3;
-			contentPanel.add(txtYCoordinate, gbc_txtYCoordinate);
-			txtYCoordinate.setColumns(10);
+			{
+				txtYCoordinate = new JTextField();
+				GridBagConstraints gbc_txtYCoordinate = new GridBagConstraints();
+				gbc_txtYCoordinate.insets = new Insets(0, 0, 5, 5);
+				gbc_txtYCoordinate.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtYCoordinate.gridx = 2;
+				gbc_txtYCoordinate.gridy = 3;
+				contentPanel.add(txtYCoordinate, gbc_txtYCoordinate);
+				txtYCoordinate.setColumns(10);
+			}
 		}
-		{
-			JButton btnBorderColor = new JButton("BorderColor");
-			btnBorderColor.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-			    color=JColorChooser.showDialog(null, "Please choose color", color);
-			    btnBorderColor.setBackground(color);
-				}
-			});
-			GridBagConstraints gbc_btnBorderColor = new GridBagConstraints();
-			gbc_btnBorderColor.insets = new Insets(0, 0, 0, 5);
-			gbc_btnBorderColor.gridx = 1;
-			gbc_btnBorderColor.gridy = 5;
-			contentPanel.add(btnBorderColor, gbc_btnBorderColor);
-		}
+		btnBorderColor = new JButton("BorderColor");
+		btnBorderColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		    color=JColorChooser.showDialog(null, "Please choose color", btnBorderColor.getBackground());
+		    btnBorderColor.setBackground(color);
+			}
+		});
+		GridBagConstraints gbc_btnBorderColor_1 = new GridBagConstraints();
+		gbc_btnBorderColor_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnBorderColor_1.gridx = 1;
+		gbc_btnBorderColor_1.gridy = 8;
+		contentPanel.add(btnBorderColor, gbc_btnBorderColor_1);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(250, 235, 215));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

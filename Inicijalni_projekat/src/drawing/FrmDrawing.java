@@ -192,7 +192,7 @@ public class FrmDrawing extends JFrame {
 					if(dialogPoint.isOkay())
 					{
 						// Color colorPoint = new Color();
-					   sh = new Point(e.getX(), e.getY(), dialogPoint.getColor());
+					   sh = new Point(e.getX(), e.getY(), dialogPoint.getBtnBorderColor().getBackground());
 					   pnlDrawing.addShape(sh);
 					}
 					
@@ -220,7 +220,7 @@ public class FrmDrawing extends JFrame {
 						if(dialogLine.isOkay())
 						{
 						//Color colorLine = dialogLine.getColor();
-						sh = new Line(new Point(sparePoint.getX(), sparePoint.getY()), new Point(clickPoint.getX(), clickPoint.getY()), dialogLine.getColor());
+						sh = new Line(new Point(sparePoint.getX(), sparePoint.getY()), new Point(clickPoint.getX(), clickPoint.getY()), dialogLine.getBtnBorderColor().getBackground());
 						pnlDrawing.addShape(sh);
 						}
 						firstClickPoint = true;
@@ -239,7 +239,7 @@ public class FrmDrawing extends JFrame {
 					int height = Integer.parseInt(dialogRectangle.getTxtHeight().getText());
 					if(dialogRectangle.isOkay())
 					{
-					sh= new Rectangle(new Point(clickPoint.getX(),clickPoint.getY()), width, height ,dialogRectangle.getBorderColor(), dialogRectangle.getInnerColor());
+					sh= new Rectangle(new Point(clickPoint.getX(),clickPoint.getY()), width, height ,dialogRectangle.getBtnBorderColor().getBackground(), dialogRectangle.getBtnInnerColor().getBackground());
 					pnlDrawing.addShape(sh);
 					}
 				}
@@ -256,7 +256,7 @@ public class FrmDrawing extends JFrame {
 					int radius = Integer.parseInt(dialogCircle.getTxtRadius().getText());
 					if(dialogCircle.isOkay())
 					{
-					sh = new Circle(new Point(e.getX(),e.getY()), radius, dialogCircle.getBorderColor(), dialogCircle.getInnerColor());
+	                sh = new Circle(new Point(e.getX(),e.getY()), radius, dialogCircle.getBtnBorderColor().getBackground(), dialogCircle.getBtnInnerColor().getBackground());
 					pnlDrawing.addShape(sh);
 					}
 				}
@@ -273,7 +273,7 @@ public class FrmDrawing extends JFrame {
 					int donutInnerRadius = Integer.parseInt(dialogDonut.getTxtInnerRadius().getText());
 					if(dialogDonut.isOkay())
 					{
-					sh = new Donut(new Point(clickPoint.getX(),clickPoint.getY()), donutRadius, donutInnerRadius, dialogDonut.getBorderColor(), dialogDonut.getInnerColor());
+					sh = new Donut(new Point(clickPoint.getX(),clickPoint.getY()), donutRadius, donutInnerRadius, dialogDonut.getBtnBorderColor().getBackground(), dialogDonut.getBtnInnerColor().getBackground());
 					pnlDrawing.addShape(sh);
 					}			
 				}

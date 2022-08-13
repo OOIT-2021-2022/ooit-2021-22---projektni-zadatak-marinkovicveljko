@@ -24,6 +24,7 @@ public class DlgLine extends JDialog {
 	private JTextField txtYStart;
 	private JTextField txtXEnd;
 	private JTextField txtYEnd;
+	private JButton btnBorderColor;
 	public boolean okay;
 	private Color color;
 
@@ -44,10 +45,12 @@ public class DlgLine extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgLine() {
+		setResizable(false);
 		setTitle("Line");
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 360, 260);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(250, 235, 215));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
@@ -149,10 +152,10 @@ public class DlgLine extends JDialog {
 			txtYEnd.setColumns(10);
 		}
 		{
-			JButton btnBorderColor = new JButton("Border color");
+			btnBorderColor = new JButton("Border color");
 			btnBorderColor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					color = JColorChooser.showDialog(null, "Please choose color", color);
+					color = JColorChooser.showDialog(null, "Please choose color", btnBorderColor.getBackground());
 					btnBorderColor.setBackground(color);
 				}
 			});
@@ -164,6 +167,7 @@ public class DlgLine extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(250, 235, 215));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -239,6 +243,15 @@ public class DlgLine extends JDialog {
 	public void setOkay(boolean okay) {
 		this.okay = okay;
 	}
+
+	public JButton getBtnBorderColor() {
+		return btnBorderColor;
+	}
+
+	public void setBtnBorderColor(JButton btnBorderColor) {
+		this.btnBorderColor = btnBorderColor;
+	}
+	
 	
 	
 	
