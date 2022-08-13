@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class Circle extends ShapeInner{
 	
 	private Point center;
-	private int radius;
+	protected int radius;
 	
 	
 	public Circle() {
@@ -114,15 +114,8 @@ public class Circle extends ShapeInner{
 	public int getRadius() {
 		return radius;
 	}
-	public void setRadius(int radius) throws Exception {
-		if(radius<0)
-		{
-		throw new Exception("Radius ne sme biti manji od 0");
-		}
-		else
-		{
+	public void setRadius(int radius) {
 		this.radius = radius;
-		}
 	}
 	
 	public String toString() {

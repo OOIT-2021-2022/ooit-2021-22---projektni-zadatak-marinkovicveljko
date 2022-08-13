@@ -35,6 +35,7 @@ public class FrmDrawing extends JFrame {
 	private Point sparePoint;
 	private boolean firstClickPoint = true;
 	private Shape selectedShape;
+	private PnlDrawing pnlDrawing;
 	
 
 	/**
@@ -59,6 +60,7 @@ public class FrmDrawing extends JFrame {
 	public FrmDrawing() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		pnlDrawing = new PnlDrawing();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -139,21 +141,39 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnSelect.gridy = 0;
 		pnlSouth.add(tglbtnSelect, gbc_tglbtnSelect);
 		
-		JButton btnModify = new JButton("Modify");
-		GridBagConstraints gbc_btnModify = new GridBagConstraints();
-		gbc_btnModify.insets = new Insets(0, 0, 0, 5);
-		gbc_btnModify.gridx = 6;
-		gbc_btnModify.gridy = 0;
-		pnlSouth.add(btnModify, gbc_btnModify);
+		JToggleButton tglbtnModify = new JToggleButton("Modify");
+		tglbtnModify.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(pnlDrawing.getSelectedShape() != null) {
+					pnlDrawing.modify();
+					pnlDrawing.setSelect(false);
+					repaint();
+				}
+				else 
+				{
+					JOptionPane.showMessageDialog(null, "Please select shape");
+				}
+			}
+		});
+		buttonGroup.add(tglbtnModify);
+		GridBagConstraints gbc_tglbtnModify = new GridBagConstraints();
+		gbc_tglbtnModify.insets = new Insets(0, 0, 0, 5);
+		gbc_tglbtnModify.gridx = 5;
+		gbc_tglbtnModify.gridy = 0;
+		pnlSouth.add(tglbtnModify, gbc_tglbtnModify);
 		
-		JButton btnDelete = new JButton("Delete");
-		GridBagConstraints gbc_btnDelete = new GridBagConstraints();
-		gbc_btnDelete.gridx = 8;
-		gbc_btnDelete.gridy = 0;
-		pnlSouth.add(btnDelete, gbc_btnDelete);
+		JToggleButton tglbtnDelete = new JToggleButton("Delete");
+		tglbtnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pnlDrawing.delete();
+			}
+		});
+		buttonGroup.add(tglbtnDelete);
+		GridBagConstraints gbc_tglbtnDelete = new GridBagConstraints();
+		gbc_tglbtnDelete.gridx = 8;
+		gbc_tglbtnDelete.gridy = 0;
+		pnlSouth.add(tglbtnDelete, gbc_tglbtnDelete);
 		
-		
-		PnlDrawing pnlDrawing = new PnlDrawing();
 		pnlDrawing.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -262,7 +282,6 @@ public class FrmDrawing extends JFrame {
 					Point p = new Point (e.getX(), e.getY());
 				    pnlDrawing.selected(p.getX(), p.getY());
 				}
-				
 				
 			}
 		});
