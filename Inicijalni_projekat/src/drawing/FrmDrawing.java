@@ -58,9 +58,11 @@ public class FrmDrawing extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmDrawing() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 395, 300);
 		pnlDrawing = new PnlDrawing();
+		pnlDrawing.setBackground(Color.WHITE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -79,6 +81,7 @@ public class FrmDrawing extends JFrame {
 		
 		buttonGroup.add(tglbtnPoint);
 		GridBagConstraints gbc_tglbtnPoint = new GridBagConstraints();
+		gbc_tglbtnPoint.weightx = 80.0;
 		gbc_tglbtnPoint.insets = new Insets(0, 0, 0, 5);
 		gbc_tglbtnPoint.gridx = 0;
 		gbc_tglbtnPoint.gridy = 0;

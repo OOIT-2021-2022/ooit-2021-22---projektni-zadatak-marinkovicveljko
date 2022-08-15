@@ -31,6 +31,7 @@ public class FrmStack extends JFrame {
 	DefaultListModel<Circle> dlm = new DefaultListModel<Circle>();
 	
 	
+	
 
 	/**
 	 * Launch the application.
@@ -52,10 +53,11 @@ public class FrmStack extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmStack() {
+		setResizable(false);
 		setForeground(Color.WHITE);
 		setTitle("Veljko Marinkovic IT15-2021");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 400, 248);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -67,20 +69,21 @@ public class FrmStack extends JFrame {
 		gbl_pnlCenter.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_pnlCenter.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_pnlCenter.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_pnlCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_pnlCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		pnlCenter.setLayout(gbl_pnlCenter);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.gridheight = 2;
+		gbc_scrollPane.gridwidth = 2;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 7;
-		gbc_scrollPane.gridy = 7;
+		gbc_scrollPane.gridx = 6;
+		gbc_scrollPane.gridy = 5;
 		pnlCenter.add(scrollPane, gbc_scrollPane);
 		
 		JList lstCircle = new JList();
 		scrollPane.setViewportView(lstCircle);
-		lstCircle.setModel(dlm); // Sve sto se dodaje u model, dodaje se i u listu
+		lstCircle.setModel(dlm);
 		
 		JPanel pnlNorth = new JPanel();
 		pnlNorth.setBackground(Color.CYAN);
@@ -129,7 +132,11 @@ public class FrmStack extends JFrame {
 					}
 					else
 					{
+						int option = JOptionPane.showInternalConfirmDialog(null, "Are you sure that you want to delete this circle?", "Warning message", JOptionPane.YES_NO_OPTION);
+						if(option == JOptionPane.YES_OPTION)
+						{
 						dlm.remove(0);
+						}
 					}
 				} catch (Exception e2)
 				{

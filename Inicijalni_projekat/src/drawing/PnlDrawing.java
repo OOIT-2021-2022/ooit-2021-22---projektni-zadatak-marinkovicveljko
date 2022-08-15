@@ -126,19 +126,20 @@ public class PnlDrawing extends JPanel {
 			    DlgPoint dialogPoint = new DlgPoint();
 			    dialogPoint.getTxtXCoordinate().setText(Integer.toString(p.getX()));
 			    dialogPoint.getTxtYCoordinate().setText(Integer.toString(p.getY()));
-			    dialogPoint.setColor(getBackground());
+			    dialogPoint.getBtnBorderColor().setBackground(p.getColor());
 			    dialogPoint.setVisible(true);
 			    if(dialogPoint.isOkay())
 			    {
 			     p.setX(Integer.parseInt(dialogPoint.getTxtXCoordinate().getText()));
 			     p.setY(Integer.parseInt(dialogPoint.getTxtYCoordinate().getText()));
-			     p.setColor(dialogPoint.getColor());
+			     p.setColor(dialogPoint.getBtnBorderColor().getBackground());
 			     repaint();
+			     selectedShape.setSelected(false);
 			    }
 			    else
 			    { 
 			    	selectedShape.setSelected(false);
-			    repaint();
+			        repaint();
 			    }
 			}
 			if(selectedShape instanceof Line) {
@@ -148,15 +149,16 @@ public class PnlDrawing extends JPanel {
 				dialogLine.getTxtYStart().setText(Integer.toString(l.getStartPoint().getY()));
 				dialogLine.getTxtXEnd().setText(Integer.toString(l.getEndPoint().getX()));
 				dialogLine.getTxtYEnd().setText(Integer.toString(l.getEndPoint().getY()));
-				dialogLine.setColor(getBackground());
+				dialogLine.getBtnBorderColor().setBackground(l.getColor());
 				dialogLine.setVisible(true);
 				if(dialogLine.isOkay()) {
 					l.getStartPoint().setX(Integer.parseInt(dialogLine.getTxtXStart().getText()));
 					l.getStartPoint().setY(Integer.parseInt(dialogLine.getTxtYStart().getText()));
 					l.getEndPoint().setX(Integer.parseInt(dialogLine.getTxtXEnd().getText()));
 					l.getEndPoint().setY(Integer.parseInt(dialogLine.getTxtXEnd().getText()));
-					l.setColor(dialogLine.getColor());
+					l.setColor(dialogLine.getBtnBorderColor().getBackground());
 					repaint();
+					selectedShape.setSelected(false);
 				} else {
 					selectedShape.setSelected(false);
 					repaint();
@@ -169,17 +171,18 @@ public class PnlDrawing extends JPanel {
 					dialogRectangle.getTxtYCoordinate().setText(Integer.toString(r.getUpperLeftPoint().getY()));
 					dialogRectangle.getTxtWidth().setText(Integer.toString(r.getWidth()));
 					dialogRectangle.getTxtHeight().setText(Integer.toString(r.getHeight()));
-					dialogRectangle.setBorderColor(getBackground());
-					dialogRectangle.setInnerColor(getBackground());
+					dialogRectangle.getBtnBorderColor().setBackground(r.getColor());
+					dialogRectangle.getBtnInnerColor().setBackground(r.getInnerColor());
 					dialogRectangle.setVisible(true);
 					if(dialogRectangle.isOkay()) {
 						r.getUpperLeftPoint().setX(Integer.parseInt(dialogRectangle.getTxtXCoordinate().getText()));
 						r.getUpperLeftPoint().setY(Integer.parseInt(dialogRectangle.getTxtYCoordinate().getText()));
 						r.setWidth(Integer.parseInt(dialogRectangle.getTxtWidth().getText()));
 						r.setHeight(Integer.parseInt(dialogRectangle.getTxtHeight().getText()));
-						r.setColor(dialogRectangle.getBorderColor());
-						r.setInnerColor(dialogRectangle.getInnerColor());
+						r.setColor(dialogRectangle.getBtnBorderColor().getBackground());
+						r.setInnerColor(dialogRectangle.getBtnInnerColor().getBackground());
 						repaint();
+						selectedShape.setSelected(false);
 					} else {
 						selectedShape.setSelected(false);
 						repaint();
@@ -194,16 +197,17 @@ public class PnlDrawing extends JPanel {
 					dialogCircle.getTxtCenterX().setText(Integer.toString(c.getCenter().getX()));
 					dialogCircle.getTxtCenterY().setText(Integer.toString(c.getCenter().getY()));
 					dialogCircle.getTxtRadius().setText(Integer.toString(c.getRadius()));
-					dialogCircle.setBorderColor(getBackground());
-					dialogCircle.setInnerColor(getBackground());
+					dialogCircle.getBtnBorderColor().setBackground(c.getColor());
+					dialogCircle.getBtnInnerColor().setBackground(c.getInnerColor());
 					dialogCircle.setVisible(true);
 					if(dialogCircle.isOkay()) {
 						c.getCenter().setX(Integer.parseInt(dialogCircle.getTxtCenterX().getText()));
 						c.getCenter().setY(Integer.parseInt(dialogCircle.getTxtCenterY().getText()));
 						c.setRadius(Integer.parseInt(dialogCircle.getTxtRadius().getText()));
-						c.setColor(dialogCircle.getBorderColor());
-						c.setInnerColor(dialogCircle.getInnerColor());
+						c.setColor(dialogCircle.getBtnBorderColor().getBackground());
+						c.setInnerColor(dialogCircle.getBtnInnerColor().getBackground());
 						repaint();
+						selectedShape.setSelected(false);
 					} else {
 						selectedShape.setSelected(false);
 						repaint();
@@ -218,17 +222,18 @@ public class PnlDrawing extends JPanel {
 					dialogDonut.getTxtYCentre().setText(Integer.toString(d.getCenter().getY()));
 					dialogDonut.getTxtRadius().setText(Integer.toString(d.getRadius()));
 					dialogDonut.getTxtInnerRadius().setText(Integer.toString(d.getInnerRadius()));
-					dialogDonut.setBorderColor(getBackground());
-					dialogDonut.setInnerColor(getBackground());
+					dialogDonut.getBtnBorderColor().setBackground(d.getColor());
+					dialogDonut.getBtnInnerColor().setBackground(d.getInnerColor());
 					dialogDonut.setVisible(true);
 					if(dialogDonut.isOkay()) {
 						d.getCenter().setX(Integer.parseInt(dialogDonut.getTxtCenterX().getText()));
 						d.getCenter().setY(Integer.parseInt(dialogDonut.getTxtYCentre().getText()));
 						d.setRadius(Integer.parseInt(dialogDonut.getTxtRadius().getText()));
 						d.setInnerRadius(Integer.parseInt(dialogDonut.getTxtInnerRadius().getText()));
-						d.setInnerColor(dialogDonut.getInnerColor());
-						d.setColor(dialogDonut.getBorderColor());
+						d.setInnerColor(dialogDonut.getBtnInnerColor().getBackground());
+						d.setColor(dialogDonut.getBtnBorderColor().getBackground());
 						repaint();
+						selectedShape.setSelected(false);
 					}
 					else {
 						selectedShape.setSelected(false);
