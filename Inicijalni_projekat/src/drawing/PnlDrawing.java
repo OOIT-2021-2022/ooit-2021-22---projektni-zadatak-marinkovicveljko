@@ -113,6 +113,7 @@ public class PnlDrawing extends JPanel {
 		if(shapes.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "List of shapes is empty");
 			setSelect(true);
+			return;
 		}
 		else
 		{
