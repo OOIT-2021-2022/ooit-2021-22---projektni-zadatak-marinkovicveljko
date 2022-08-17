@@ -157,7 +157,7 @@ public class FrmDrawing extends JFrame {
 				{
 					JOptionPane.showMessageDialog(null, "Please select shape!");
 				}
-				pnlDrawing.setSelectedShape(null);
+				 pnlDrawing.setSelectedShape(null);
 			}
 		});
 		buttonGroup.add(tglbtnModify);
