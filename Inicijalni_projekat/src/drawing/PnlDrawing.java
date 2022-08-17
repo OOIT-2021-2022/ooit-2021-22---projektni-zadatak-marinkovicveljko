@@ -91,6 +91,7 @@ public class PnlDrawing extends JPanel {
 		{
 			setSelect(false);
 		}
+		
 			if(selectedShape != null)
 			{
 			setSelect(true);
@@ -104,8 +105,9 @@ public class PnlDrawing extends JPanel {
 			selectedShape.setSelected(false);
 			repaint();
 			}
-			
-		}
+			}
+			else
+			JOptionPane.showMessageDialog(null, "Please select shape");
 	}
 	
 	public void modify()
@@ -234,7 +236,6 @@ public class PnlDrawing extends JPanel {
 						d.setInnerColor(dialogDonut.getBtnInnerColor().getBackground());
 						d.setColor(dialogDonut.getBtnBorderColor().getBackground());
 						repaint();
-						selectedShape.setSelected(false);
 					}
 					else {
 						selectedShape.setSelected(false);

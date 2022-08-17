@@ -20,6 +20,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class DlgSort extends JDialog {
 
@@ -47,11 +48,15 @@ public class DlgSort extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgSort() {
+		getContentPane().setBackground(new Color(255, 222, 173));
+		setBackground(Color.WHITE);
+		setResizable(false);
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 320, 210);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(255, 222, 173));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().add(contentPanel, BorderLayout.NORTH);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -59,12 +64,20 @@ public class DlgSort extends JDialog {
 		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
+			JLabel lblCenterCoordinate = new JLabel("Center coordinate");
+			GridBagConstraints gbc_lblCenterCoordinate = new GridBagConstraints();
+			gbc_lblCenterCoordinate.insets = new Insets(0, 0, 5, 5);
+			gbc_lblCenterCoordinate.gridx = 1;
+			gbc_lblCenterCoordinate.gridy = 1;
+			contentPanel.add(lblCenterCoordinate, gbc_lblCenterCoordinate);
+		}
+		{
 			JLabel lblCircleX = new JLabel("X coordinate");
 			GridBagConstraints gbc_lblCircleX = new GridBagConstraints();
 			gbc_lblCircleX.anchor = GridBagConstraints.EAST;
 			gbc_lblCircleX.insets = new Insets(0, 0, 5, 5);
 			gbc_lblCircleX.gridx = 2;
-			gbc_lblCircleX.gridy = 0;
+			gbc_lblCircleX.gridy = 2;
 			contentPanel.add(lblCircleX, gbc_lblCircleX);
 		}
 		{
@@ -73,7 +86,7 @@ public class DlgSort extends JDialog {
 			gbc_txtCircleX.insets = new Insets(0, 0, 5, 0);
 			gbc_txtCircleX.fill = GridBagConstraints.HORIZONTAL;
 			gbc_txtCircleX.gridx = 3;
-			gbc_txtCircleX.gridy = 0;
+			gbc_txtCircleX.gridy = 2;
 			contentPanel.add(txtCircleX, gbc_txtCircleX);
 			txtCircleX.setColumns(10);
 		}
@@ -97,24 +110,34 @@ public class DlgSort extends JDialog {
 			txtCircleY.setColumns(10);
 		}
 		{
+			JLabel lblProperties = new JLabel("Properties");
+			GridBagConstraints gbc_lblProperties = new GridBagConstraints();
+			gbc_lblProperties.insets = new Insets(0, 0, 5, 5);
+			gbc_lblProperties.gridx = 1;
+			gbc_lblProperties.gridy = 4;
+			contentPanel.add(lblProperties, gbc_lblProperties);
+		}
+		{
 			JLabel lblCircleRadius = new JLabel("Radius");
 			GridBagConstraints gbc_lblCircleRadius = new GridBagConstraints();
-			gbc_lblCircleRadius.insets = new Insets(0, 0, 0, 5);
+			gbc_lblCircleRadius.insets = new Insets(0, 0, 5, 5);
 			gbc_lblCircleRadius.gridx = 2;
-			gbc_lblCircleRadius.gridy = 6;
+			gbc_lblCircleRadius.gridy = 5;
 			contentPanel.add(lblCircleRadius, gbc_lblCircleRadius);
 		}
 		{
 			txtRadius = new JTextField();
 			GridBagConstraints gbc_txtRadius = new GridBagConstraints();
+			gbc_txtRadius.insets = new Insets(0, 0, 5, 0);
 			gbc_txtRadius.fill = GridBagConstraints.HORIZONTAL;
 			gbc_txtRadius.gridx = 3;
-			gbc_txtRadius.gridy = 6;
+			gbc_txtRadius.gridy = 5;
 			contentPanel.add(txtRadius, gbc_txtRadius);
 			txtRadius.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(255, 222, 173));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

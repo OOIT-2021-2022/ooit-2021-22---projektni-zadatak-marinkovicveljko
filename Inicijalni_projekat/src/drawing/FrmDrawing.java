@@ -58,6 +58,7 @@ public class FrmDrawing extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmDrawing() {
+		setTitle("Veljko Marinkovic IT15-2021");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 395, 300);
@@ -149,7 +150,7 @@ public class FrmDrawing extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(pnlDrawing.getSelectedShape() != null) {
 					pnlDrawing.modify();
-					pnlDrawing.setSelect(false);
+					pnlDrawing.getSelectedShape().setSelected(false);
 					repaint();
 				}
 				else 
@@ -170,7 +171,8 @@ public class FrmDrawing extends JFrame {
 		tglbtnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pnlDrawing.delete();
-			}
+				pnlDrawing.setSelectedShape(null);
+				}
 		});
 		buttonGroup.add(tglbtnDelete);
 		GridBagConstraints gbc_tglbtnDelete = new GridBagConstraints();
@@ -239,10 +241,10 @@ public class FrmDrawing extends JFrame {
 					dialogRectangle.getTxtYCoordinate().setText(Integer.toString(clickPoint.getY()));
 					dialogRectangle.getTxtYCoordinate().setEditable(false);
 					dialogRectangle.setVisible(true);
-					int width = Integer.parseInt(dialogRectangle.getTxtWidth().getText());
-					int height = Integer.parseInt(dialogRectangle.getTxtHeight().getText());
 					if(dialogRectangle.isOkay())
 					{
+					int width = Integer.parseInt(dialogRectangle.getTxtWidth().getText());
+					int height = Integer.parseInt(dialogRectangle.getTxtHeight().getText());
 					sh= new Rectangle(new Point(clickPoint.getX(),clickPoint.getY()), width, height ,dialogRectangle.getBtnBorderColor().getBackground(), dialogRectangle.getBtnInnerColor().getBackground());
 					pnlDrawing.addShape(sh);
 					}
@@ -257,9 +259,9 @@ public class FrmDrawing extends JFrame {
 					dialogCircle.getTxtCenterY().setText(Integer.toString(clickPoint.getY()));
 					dialogCircle.getTxtCenterY().setEditable(false);
 					dialogCircle.setVisible(true);
-					int radius = Integer.parseInt(dialogCircle.getTxtRadius().getText());
 					if(dialogCircle.isOkay())
 					{
+					int radius = Integer.parseInt(dialogCircle.getTxtRadius().getText());
 	                sh = new Circle(new Point(e.getX(),e.getY()), radius, dialogCircle.getBtnBorderColor().getBackground(), dialogCircle.getBtnInnerColor().getBackground());
 					pnlDrawing.addShape(sh);
 					}
@@ -273,10 +275,10 @@ public class FrmDrawing extends JFrame {
 					dialogDonut.getTxtYCentre().setText(Integer.toString(clickPoint.getY()));
 					dialogDonut.getTxtYCentre().setEditable(false);
 					dialogDonut.setVisible(true);
-   					int donutRadius = Integer.parseInt(dialogDonut.getTxtRadius().getText());
-					int donutInnerRadius = Integer.parseInt(dialogDonut.getTxtInnerRadius().getText());
 					if(dialogDonut.isOkay())
 					{
+					int donutRadius = Integer.parseInt(dialogDonut.getTxtRadius().getText());
+					int donutInnerRadius = Integer.parseInt(dialogDonut.getTxtInnerRadius().getText());
 					sh = new Donut(new Point(clickPoint.getX(),clickPoint.getY()), donutRadius, donutInnerRadius, dialogDonut.getBtnBorderColor().getBackground(), dialogDonut.getBtnInnerColor().getBackground());
 					pnlDrawing.addShape(sh);
 					}			

@@ -17,6 +17,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class DlgStack extends JDialog {
 
@@ -43,14 +44,17 @@ public class DlgStack extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgStack() {
+		setResizable(false);
+		getContentPane().setBackground(new Color(224, 255, 255));
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 350, 220);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 434, 0 };
 		gridBagLayout.rowHeights = new int[] { 20, 208, 33, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		getContentPane().setLayout(gridBagLayout);
+		contentPanel.setBackground(new Color(224, 255, 255));
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		GridBagConstraints gbc_contentPanel = new GridBagConstraints();
@@ -62,6 +66,7 @@ public class DlgStack extends JDialog {
 		getContentPane().add(contentPanel, gbc_contentPanel);
 		{
 			JPanel pnlCenter = new JPanel();
+			pnlCenter.setBackground(new Color(224, 255, 255));
 			GridBagConstraints gbc_pnlCenter = new GridBagConstraints();
 			gbc_pnlCenter.insets = new Insets(0, 0, 5, 0);
 			gbc_pnlCenter.fill = GridBagConstraints.BOTH;
@@ -69,17 +74,26 @@ public class DlgStack extends JDialog {
 			gbc_pnlCenter.gridy = 1;
 			getContentPane().add(pnlCenter, gbc_pnlCenter);
 			GridBagLayout gbl_pnlCenter = new GridBagLayout();
-			gbl_pnlCenter.columnWidths = new int[] { 0, 0, 0, 0 };
-			gbl_pnlCenter.rowHeights = new int[] { 0, 0, 0, 0, 0 };
-			gbl_pnlCenter.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
-			gbl_pnlCenter.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+			gbl_pnlCenter.columnWidths = new int[] { 0, 0, 0, 0, 0 };
+			gbl_pnlCenter.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+			gbl_pnlCenter.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+			gbl_pnlCenter.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 			pnlCenter.setLayout(gbl_pnlCenter);
+			{
+				JLabel lblCenterCoordinate = new JLabel("Center coordinate");
+				GridBagConstraints gbc_lblCenterCoordinate = new GridBagConstraints();
+				gbc_lblCenterCoordinate.anchor = GridBagConstraints.EAST;
+				gbc_lblCenterCoordinate.insets = new Insets(0, 0, 5, 5);
+				gbc_lblCenterCoordinate.gridx = 1;
+				gbc_lblCenterCoordinate.gridy = 0;
+				pnlCenter.add(lblCenterCoordinate, gbc_lblCenterCoordinate);
+			}
 			{
 				JLabel lblCircleX = new JLabel("  X coordinate");
 				GridBagConstraints gbc_lblCircleX = new GridBagConstraints();
 				gbc_lblCircleX.anchor = GridBagConstraints.EAST;
 				gbc_lblCircleX.insets = new Insets(0, 0, 5, 5);
-				gbc_lblCircleX.gridx = 1;
+				gbc_lblCircleX.gridx = 2;
 				gbc_lblCircleX.gridy = 1;
 				pnlCenter.add(lblCircleX, gbc_lblCircleX);
 			}
@@ -88,7 +102,7 @@ public class DlgStack extends JDialog {
 				GridBagConstraints gbc_txtCircleX = new GridBagConstraints();
 				gbc_txtCircleX.insets = new Insets(0, 0, 5, 0);
 				gbc_txtCircleX.fill = GridBagConstraints.HORIZONTAL;
-				gbc_txtCircleX.gridx = 2;
+				gbc_txtCircleX.gridx = 3;
 				gbc_txtCircleX.gridy = 1;
 				pnlCenter.add(txtCircleX, gbc_txtCircleX);
 				txtCircleX.setColumns(10);
@@ -98,7 +112,7 @@ public class DlgStack extends JDialog {
 				GridBagConstraints gbc_lblCircleY = new GridBagConstraints();
 				gbc_lblCircleY.anchor = GridBagConstraints.EAST;
 				gbc_lblCircleY.insets = new Insets(0, 0, 5, 5);
-				gbc_lblCircleY.gridx = 1;
+				gbc_lblCircleY.gridx = 2;
 				gbc_lblCircleY.gridy = 2;
 				pnlCenter.add(lblCircleY, gbc_lblCircleY);
 			}
@@ -107,32 +121,41 @@ public class DlgStack extends JDialog {
 				GridBagConstraints gbc_txtCircleY = new GridBagConstraints();
 				gbc_txtCircleY.insets = new Insets(0, 0, 5, 0);
 				gbc_txtCircleY.fill = GridBagConstraints.HORIZONTAL;
-				gbc_txtCircleY.gridx = 2;
+				gbc_txtCircleY.gridx = 3;
 				gbc_txtCircleY.gridy = 2;
 				pnlCenter.add(txtCircleY, gbc_txtCircleY);
 				txtCircleY.setColumns(10);
+			}
+			{
+				JLabel lblProperties = new JLabel("Properties");
+				GridBagConstraints gbc_lblProperties = new GridBagConstraints();
+				gbc_lblProperties.insets = new Insets(0, 0, 5, 5);
+				gbc_lblProperties.gridx = 1;
+				gbc_lblProperties.gridy = 4;
+				pnlCenter.add(lblProperties, gbc_lblProperties);
 			}
 			{
 				JLabel lblCircleRadius = new JLabel("  Radius");
 				GridBagConstraints gbc_lblCircleRadius = new GridBagConstraints();
 				gbc_lblCircleRadius.anchor = GridBagConstraints.WEST;
 				gbc_lblCircleRadius.insets = new Insets(0, 0, 0, 5);
-				gbc_lblCircleRadius.gridx = 1;
-				gbc_lblCircleRadius.gridy = 3;
+				gbc_lblCircleRadius.gridx = 2;
+				gbc_lblCircleRadius.gridy = 5;
 				pnlCenter.add(lblCircleRadius, gbc_lblCircleRadius);
 			}
 			{
 				txtRadius = new JTextField();
 				GridBagConstraints gbc_txtRadius = new GridBagConstraints();
 				gbc_txtRadius.fill = GridBagConstraints.HORIZONTAL;
-				gbc_txtRadius.gridx = 2;
-				gbc_txtRadius.gridy = 3;
+				gbc_txtRadius.gridx = 3;
+				gbc_txtRadius.gridy = 5;
 				pnlCenter.add(txtRadius, gbc_txtRadius);
 				txtRadius.setColumns(10);
 			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(224, 255, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			GridBagConstraints gbc_buttonPane = new GridBagConstraints();
 			gbc_buttonPane.anchor = GridBagConstraints.NORTH;
