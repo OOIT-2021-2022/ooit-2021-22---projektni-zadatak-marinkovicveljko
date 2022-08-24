@@ -50,7 +50,7 @@ public class DlgPoint extends JDialog {
 		setResizable(false);
 		setTitle("Point");
 		setModal(true);
-		setBounds(100, 100, 270, 200);
+		setBounds(100, 100, 260, 200);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(250, 235, 215));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,7 +99,7 @@ public class DlgPoint extends JDialog {
 				txtYCoordinate.setColumns(10);
 			}
 		}
-		btnBorderColor = new JButton("BorderColor");
+		btnBorderColor = new JButton("Border Color");
 		btnBorderColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		    color=JColorChooser.showDialog(null, "Please choose color", btnBorderColor.getBackground());
@@ -134,6 +134,7 @@ public class DlgPoint extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
+						okay = false;
 						
 					}
 				});

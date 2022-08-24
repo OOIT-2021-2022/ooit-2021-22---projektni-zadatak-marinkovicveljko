@@ -33,7 +33,7 @@ public class FrmDrawing extends JFrame {
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private Point sparePoint;
-	private boolean firstClickPoint = true;
+	private boolean firstClickPoint;
 	private Shape selectedShape;
 	private PnlDrawing pnlDrawing;
 	
@@ -212,7 +212,7 @@ public class FrmDrawing extends JFrame {
 						firstClickPoint=false;		
 					}
 					else
-					{
+					{ 
 						DlgLine dialogLine = new DlgLine();
 						dialogLine.getTxtXStart().setText(Integer.toString(sparePoint.getX()));
 						dialogLine.getTxtXStart().setEditable(false);

@@ -107,7 +107,7 @@ public class Circle extends ShapeInner{
 		this.center = center;
 		
 		if(radius < 0) {
-			throw new Exception("Radius ne sme biti manji od 0");
+			throw new Exception("Radius must be greater than 0!");
 		}
 		this.radius = radius;
 	}

@@ -29,6 +29,7 @@ public class FrmStack extends JFrame {
 
 	private JPanel contentPane;
 	DefaultListModel<Circle> dlm = new DefaultListModel<Circle>();
+	JList<Circle> lstCircle;
 	
 	
 	
@@ -81,7 +82,7 @@ public class FrmStack extends JFrame {
 		gbc_scrollPane.gridy = 5;
 		pnlCenter.add(scrollPane, gbc_scrollPane);
 		
-		JList lstCircle = new JList();
+		lstCircle = new JList<Circle>();
 		scrollPane.setViewportView(lstCircle);
 		lstCircle.setModel(dlm);
 		
@@ -102,7 +103,6 @@ public class FrmStack extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DlgStack dialogStack = new DlgStack();
 				dialogStack.setVisible(true);
-				
 				try {
 				 if(dialogStack.getVar()==1)
 				 {

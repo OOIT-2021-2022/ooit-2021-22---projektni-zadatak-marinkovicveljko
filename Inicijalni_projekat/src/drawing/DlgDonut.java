@@ -198,7 +198,7 @@ public class DlgDonut extends JDialog {
 						{
 							JOptionPane.showMessageDialog(null, "Both, inner radius and radius must be greater than 0");
 						}
-						else if(Integer.parseInt(txtInnerRadius.getText()) > Integer.parseInt(txtRadius.getText()))
+						else if(Integer.parseInt(txtInnerRadius.getText()) >= Integer.parseInt(txtRadius.getText()))
 						{
 							JOptionPane.showMessageDialog(null, "Inner radius shouldn't be greater than radius");
 						}

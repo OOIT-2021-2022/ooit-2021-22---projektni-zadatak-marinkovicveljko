@@ -19,7 +19,7 @@ public class PnlDrawing extends JPanel {
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 	private Shape shape;
 	private Shape selectedShape;
-	private boolean select;
+	//private boolean select;
 
 	/**
 	 * Create the panel.
@@ -49,21 +49,12 @@ public class PnlDrawing extends JPanel {
 	public void setSelectedShape(Shape selectedShape) {
 		this.selectedShape = selectedShape;
 	}
-
-	public boolean isSelect() {
-		return select;
-	}
-
-	public void setSelect(boolean select) {
-		this.select = select;
-	}
-
 	public void selected(int coordinatex, int coordinatey)
 	{
 		selectedShape = null;
 		if(shapes.isEmpty())
 		{
-			JOptionPane.showMessageDialog(null, "There is no shapes");
+			JOptionPane.showMessageDialog(null, "There is no shapes!");
 		}
 		Iterator<Shape> it = shapes.iterator();
 		while(it.hasNext())
@@ -85,41 +76,31 @@ public class PnlDrawing extends JPanel {
 	public void delete() {
 		
 		if(shapes.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "List of shapes is empty");
-			setSelect(true);
-		} else 
-		{
-			setSelect(false);
-		}
-		
+			JOptionPane.showMessageDialog(null, "List of shapes is empty!");
+			return;
+
+		} 
 			if(selectedShape != null)
 			{
-			setSelect(true);
 			int option = JOptionPane.showInternalConfirmDialog(null, "Are you sure that you want to delete this shape", "Warning message", JOptionPane.YES_NO_OPTION);
 			if(option == JOptionPane.YES_OPTION) {
 				shapes.remove(selectedShape);
 				repaint();
 			}
 			else {
-			setSelect(true);
 			selectedShape.setSelected(false);
 			repaint();
 			}
 			}
 			else
-			JOptionPane.showMessageDialog(null, "Please select shape");
+			JOptionPane.showMessageDialog(null, "Please select shape!");
 	}
 	
 	public void modify()
 	{
 		if(shapes.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "List of shapes is empty");
-			setSelect(true);
+			JOptionPane.showMessageDialog(null, "List of shapes is empty!");
 			return;
-		}
-		else
-		{
-			setSelect(false);
 		}
 		if(selectedShape != null) 
 		{

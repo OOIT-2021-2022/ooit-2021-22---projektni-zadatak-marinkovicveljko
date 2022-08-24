@@ -52,9 +52,9 @@ public class Donut extends Circle {
 		}
 	}
 
-	public boolean contains(Point clickPoint) {
-		return super.contains(clickPoint)
-				&& this.getCenter().distance(clickPoint.getX(), clickPoint.getY()) >= innerRadius;
+	public boolean contains(int x, int y) {
+		return super.contains(x,y)
+				&& this.getCenter().distance(x, y) >= innerRadius;
 	}
 
 	public double area() {

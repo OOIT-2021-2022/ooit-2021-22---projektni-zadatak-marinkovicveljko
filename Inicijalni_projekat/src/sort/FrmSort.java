@@ -31,6 +31,7 @@ public class FrmSort extends JFrame {
 	private JPanel contentPane;
 	DefaultListModel<Circle> dlm = new DefaultListModel<Circle>();
 	ArrayList<Circle> sortCircles = new ArrayList<Circle>();
+	JList<Circle> lstSort;
 
 	/**
 	 * Launch the application.
@@ -94,7 +95,7 @@ public class FrmSort extends JFrame {
 		gbc_scrollPane.gridy = 4;
 		pnlCentre.add(scrollPane, gbc_scrollPane);
 		
-		JList lstSort = new JList();
+		lstSort = new JList<Circle>();
 		scrollPane.setViewportView(lstSort);
 		lstSort.setModel(dlm);
 		
